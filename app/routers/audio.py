@@ -92,7 +92,7 @@ def transcribe_case(case_id: int, db: Session = Depends(get_db)):
     logger.info("Transcribing case %d: %s", case_id, audio_path)
 
     try:
-        # Prompt for Traditional Chinese / Taiwan usage and anti-hallucination
+        # Anti-hallucination prompt for medical transcription
         prompt_text = "This is a medical conversation. Do not hallucinate! If there is no audio or it is unclear, leave it blank. Never guess words or generate unrelated subtitles."
         text_out = transcribe_audio_file(str(audio_path), prompt=prompt_text)
     except Exception as e:
