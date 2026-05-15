@@ -19,8 +19,7 @@ class Settings(BaseSettings):
     # Deepgram (Phase 4)
     DEEPGRAM_API_KEY: str = ""
 
-    # NeMo
-    NEMO_ASR_MODEL: str = "stt_zh_conformer_transducer_large"
+
 
     # Google Cloud STT
     GOOGLE_APPLICATION_CREDENTIALS: str = ""
@@ -32,7 +31,7 @@ class Settings(BaseSettings):
     CHUNK_DURATION_SEC: int = 5
 
     class Config:
-        env_file = str(Path(__file__).resolve().parent.parent / ".env")
+        env_file = str(Path(__file__).resolve().parent.parent.parent / ".env")
         env_file_encoding = "utf-8"
 
 

@@ -14,17 +14,17 @@ class Case(Base):
 
     id = Column(Integer, primary_key=True, index=True)
 
-    # 狀態（你原本用 new/has_audio/transcribed 都可以照用）
+    # Status (new / has_audio / transcribed etc.)
     status = Column(String, default="new", nullable=False)
 
-    # 音檔路徑（✅ 錄音上傳會寫入這裡）
+    # Audio file path (written on upload)
     audio_path = Column(String, nullable=True)
 
-    # 逐字稿
+    # Transcript
     transcript_raw = Column(Text, nullable=True)
     transcript_clean = Column(Text, nullable=True)
 
-    # SOAP 狀態（如果你 DB 有這欄就留，沒有也不會影響目前 upload/audio）
+    # SOAP status (optional column)
     soap_status = Column(String, nullable=True)
 
     # Live streaming

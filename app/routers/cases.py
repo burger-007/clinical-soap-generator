@@ -92,10 +92,10 @@ def ui_case(case_id: int, db: Session = Depends(get_db)):
         <div>Status: <b>{c.status}</b></div>
         <h3>transcript_raw</h3>
         <pre style="white-space:pre-wrap;background:#f5f5f5;padding:12px;border-radius:8px;">{transcript}</pre>
-        <h3>transcript_clean（可編輯）</h3>
+        <h3>transcript_clean (editable)</h3>
         <textarea id="ta"
           style="width:100%;height:40vh;font-size:14px;padding:12px;border-radius:8px;border:1px solid #ddd;"
-          placeholder="在這裡修正逐字稿…">{c.transcript_clean or ""}</textarea>
+          placeholder="Edit transcript here…">{c.transcript_clean or ""}</textarea>
         <div style="margin-top:12px;">
             <button onclick="save()" style="padding:8px 14px;">Save</button>
             <span id="msg" style="margin-left:10px;color:#666;"></span>

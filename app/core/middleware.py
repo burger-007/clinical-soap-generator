@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 def setup_middleware(app: FastAPI):
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],   # 上線時改為指定域名
+        allow_origins=["*"],   # restrict to specific domains in production
         allow_methods=["*"],
         allow_headers=["*"],
     )

@@ -20,7 +20,7 @@ router = APIRouter(prefix="/cases", tags=["soap"])
 
 
 # ----------------------------
-# 逐字稿品質檢查
+# Transcript quality check
 # ----------------------------
 def _is_transcript_usable(text: str) -> tuple[bool, str]:
     t = (text or "").strip()
@@ -31,7 +31,7 @@ def _is_transcript_usable(text: str) -> tuple[bool, str]:
     zh_count = sum(1 for c in t if "\u4e00" <= c <= "\u9fff")
     if zh_count / max(len(t), 1) < 0.05:
         return False, "low_chinese_ratio"
-    if "啊啊啊" in t or "哈哈哈" in t:
+    if len(set(t)) < 3:
         return False, "nonsense_repetition"
     return True, "ok"
 

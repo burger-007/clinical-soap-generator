@@ -285,7 +285,7 @@ class SpeechPipeline:
         """
         Feed raw PCM bytes (any length) through the pipeline.
         Returns a list of (is_final: bool, text: str) tuples.
-        When buffering speech, returns an interim (False, "（辨識中…）").
+        When buffering speech, returns an interim (False, "(recognizing...)").
         When a segment completes, returns the final (True, transcript).
         """
         transcripts: list[tuple[bool, str]] = []
@@ -314,7 +314,7 @@ class SpeechPipeline:
                     # To avoid spamming on every frame, we could just emit one,
                     # but the websocket router will handle it.
                     if len(transcripts) == 0 or transcripts[-1][0] == True:
-                         transcripts.append((False, "（辨識中…）"))
+                         transcripts.append((False, "(recognizing...)"))
 
             else:
                 self._silence_frames += 1

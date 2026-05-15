@@ -11,19 +11,19 @@ const $ = id => document.getElementById(id);
  *  SPA State & Routing
  *  ====================================================== */
 const DEPARTMENTS = [
-  { key: "os", name: "口腔顎面外科", active: true },
-  { key: "opdx", name: "口腔病理暨診斷科", active: true },
-  { key: "tmd", name: "顳顎關節障礙科", active: true },
-  { key: "gd", name: "一般牙科", active: true },
-  { key: "endo", name: "牙髄病科", active: true },
-  { key: "rest", name: "牙體復形美容牙科", active: true },
-  { key: "pros", name: "贋復補綴科", active: true },
-  { key: "perio", name: "牙周病科", active: true },
-  { key: "ortho", name: "齒顎矯正科", active: true },
-  { key: "pedo", name: "兒童牙科", active: true },
-  { key: "pedo_dc", name: "兒童牙科(出院摘要)", active: true },
-  { key: "implant", name: "植牙科", active: true },
-  { key: "xray", name: "牙科X光室", active: true },
+  { key: "os", name: "Oral & Maxillofacial Surgery", active: true },
+  { key: "opdx", name: "Oral Pathology & Diagnosis", active: true },
+  { key: "tmd", name: "TMD / Orofacial Pain", active: true },
+  { key: "gd", name: "General Dentistry", active: true },
+  { key: "endo", name: "Endodontics", active: true },
+  { key: "rest", name: "Operative & Aesthetic Dentistry", active: true },
+  { key: "pros", name: "Prosthodontics", active: true },
+  { key: "perio", name: "Periodontics", active: true },
+  { key: "ortho", name: "Orthodontics", active: true },
+  { key: "pedo", name: "Pediatric Dentistry", active: true },
+  { key: "pedo_dc", name: "Pediatric Dentistry (Discharge)", active: true },
+  { key: "implant", name: "Implantology", active: true },
+  { key: "xray", name: "Dental Radiology", active: true },
 ];
 
 const AppState = {
@@ -505,7 +505,7 @@ function buildDxSoapForm() {
   return `
   <!-- S -->
   <div class="soap-card">
-    <div class="card-head"><div class="badge">S</div><div class="card-head-text"><b>Subjective</b><span>主觀資料</span></div></div>
+    <div class="card-head"><div class="badge">S</div><div class="card-head-text"><b>Subjective</b><span>Subjective Data</span></div></div>
     <div class="card-body">
       <div class="field"><label>Chief Complaint (CC)</label><textarea name="cc" rows="2" placeholder="Needs review"></textarea></div>
       <div class="field"><label>Present Illness (PI)</label><textarea name="pi" rows="3" placeholder="Needs review"></textarea></div>
@@ -589,7 +589,7 @@ function buildOpdxSoapForm() {
   return `
   <!-- S -->
   <div class="soap-card">
-    <div class="card-head"><div class="badge">S</div><div class="card-head-text"><b>Subjective</b><span>主觀資料</span></div></div>
+    <div class="card-head"><div class="badge">S</div><div class="card-head-text"><b>Subjective</b><span>Subjective Data</span></div></div>
     <div class="card-body">
       <!-- CC -->
       <fieldset class="inner-fieldset"><legend>Chief Complaint (CC)</legend>
@@ -1052,42 +1052,42 @@ function buildTmdSoapForm() {
 /* ---------- TMD SOP checklist items ---------- */
 const SOP_ITEMS_TMD = {
   level_0: [
-    { id: "tmd_cc", label: "CC (主訴)", keywords: ["主訴", "怎麼了", "哪裡不舒服", "CC"] },
-    { id: "tmd_pi", label: "PI", keywords: ["開始", "何時", "多久", "病史"] },
-    { id: "tmd_pain", label: "疼痛", keywords: ["痛", "突突", "酸", "軎關節痛"] },
-    { id: "tmd_noise", label: "關節聲音", keywords: ["彈響", "clicking", "嗠嗠", "聋音", "popping"] },
-    { id: "tmd_locking", label: "鎖口", keywords: ["鎖", "卡住", "張不開", "關不上", "locking"] },
+    { id: "tmd_cc", label: "CC (Chief Complaint)", keywords: ["chief complaint", "what brings you", "problem", "CC"] },
+    { id: "tmd_pi", label: "PI", keywords: ["started", "when", "how long", "history"] },
+    { id: "tmd_pain", label: "Pain", keywords: ["pain", "ache", "sore", "TMJ pain"] },
+    { id: "tmd_noise", label: "Joint Sound", keywords: ["clicking", "popping", "crepitus", "noise"] },
+    { id: "tmd_locking", label: "Locking", keywords: ["lock", "stuck", "cannot open", "cannot close", "locking"] },
   ],
   level_1_modules: {
     tmd_myalgia: {
-      label: "肌肉疼痛",
-      detect_keywords: ["肌肉痛", "咬肌", "太陽穴", "masseter", "temporal"],
+      label: "Myalgia",
+      detect_keywords: ["muscle pain", "masseter", "temple", "temporal"],
       items: [
-        { id: "tmd_my_location", label: "疼痛位置", keywords: ["哪邊", "左右", "太陽穴"] },
-        { id: "tmd_my_palpation", label: "觸診壓痛", keywords: ["壓痛", "按壓", "palpation"] },
-        { id: "tmd_my_trigger", label: "誘發因子", keywords: ["咬", "嘴巴張", "打哈欠", "stress"] },
+        { id: "tmd_my_location", label: "Pain Location", keywords: ["which side", "left right", "temple"] },
+        { id: "tmd_my_palpation", label: "Palpation Tenderness", keywords: ["tenderness", "pressing", "palpation"] },
+        { id: "tmd_my_trigger", label: "Triggering Factors", keywords: ["chewing", "opening", "yawning", "stress"] },
       ],
       red_flags: []
     },
     tmd_disc: {
-      label: "關節盤問題",
-      detect_keywords: ["彈響", "clicking", "卡", "鎖", "disc"],
+      label: "Disc Disorder",
+      detect_keywords: ["clicking", "stuck", "lock", "disc"],
       items: [
-        { id: "tmd_disc_type", label: "有/無復位", keywords: ["復位", "reduction", "卡回"] },
-        { id: "tmd_disc_timing", label: "開/關口時", keywords: ["開口", "關口", "彈"] },
+        { id: "tmd_disc_type", label: "With/Without Reduction", keywords: ["reduction", "recapture"] },
+        { id: "tmd_disc_timing", label: "Opening/Closing", keywords: ["opening", "closing", "click"] },
       ],
       red_flags: [
-        { id: "tmd_disc_lock", label: "急性鎖口", keywords: ["突然張不開", "卡死", "急性"] }
+        { id: "tmd_disc_lock", label: "Acute Lock", keywords: ["sudden lock", "cannot open", "acute"] }
       ]
     },
   },
   level_2: [
-    { id: "tmd_pmh", label: "PMH", keywords: ["病史", "PMH"] },
-    { id: "tmd_meds", label: "Meds", keywords: ["藥", "止痛"] },
-    { id: "tmd_allergy", label: "Allergy", keywords: ["過敏"] },
-    { id: "tmd_habits", label: "習慣", keywords: ["磨牙", "緊咬", "bruxism", "clenching"] },
-    { id: "tmd_stress", label: "壓力/睡眠", keywords: ["壓力", "無法入睡", "睡眠", "stress"] },
-    { id: "tmd_imaging", label: "影像", keywords: ["MRI", "CBCT", "Pano", "X光"] },
+    { id: "tmd_pmh", label: "PMH", keywords: ["medical history", "PMH"] },
+    { id: "tmd_meds", label: "Meds", keywords: ["medication", "painkiller"] },
+    { id: "tmd_allergy", label: "Allergy", keywords: ["allergy"] },
+    { id: "tmd_habits", label: "Habits", keywords: ["grinding", "clenching", "bruxism"] },
+    { id: "tmd_stress", label: "Stress/Sleep", keywords: ["stress", "insomnia", "sleep"] },
+    { id: "tmd_imaging", label: "Imaging", keywords: ["MRI", "CBCT", "Pano", "X-ray"] },
   ]
 };
 
@@ -1421,37 +1421,37 @@ function buildOrthoSoapForm() {
 /* ---------- Ortho SOP checklist items ---------- */
 const SOP_ITEMS_ORTHO = {
   level_0: [
-    { id: "ortho_cc", label: "CC (主訴)", keywords: ["主訴", "矯正", "暴牙", "不整齊", "戳地包天", "CC"] },
-    { id: "ortho_pi", label: "PI", keywords: ["開始", "何時", "多久"] },
+    { id: "ortho_cc", label: "CC (Chief Complaint)", keywords: ["Chief Complaint", "orthodontic", "protruding teeth", "no整齊", "戳地swellingdays", "CC"] },
+    { id: "ortho_pi", label: "PI", keywords: ["started", "when", "how long"] },
     { id: "ortho_concern", label: "主要訴求", keywords: ["想要", "希望", "美觀", "功能"] },
-    { id: "ortho_habits", label: "習慣", keywords: ["吸指", "口呼吸", "吐舌", "磨牙"] },
+    { id: "ortho_habits", label: "Habits", keywords: ["吸finger", "口呼吸", "吐tongue", "grinding"] },
   ],
   level_1_modules: {
     ortho_crowding: {
-      label: "擁擠",
-      detect_keywords: ["擁擠", "不整齊", "歪", "空間不夠", "crowding"],
+      label: "crowding",
+      detect_keywords: ["crowding", "no整齊", "歪", "spaceno夠", "crowding"],
       items: [
-        { id: "ortho_cr_severity", label: "嚴重度", keywords: ["輕微", "中度", "嚴重"] },
-        { id: "ortho_cr_location", label: "位置", keywords: ["前牙", "後牙", "上顎", "下顎"] },
+        { id: "ortho_cr_severity", label: "severesevere", keywords: ["輕微", "moderate", "severe"] },
+        { id: "ortho_cr_location", label: "location", keywords: ["anteriortooth", "posteriortooth", "maxillary", "mandibular"] },
       ],
       red_flags: []
     },
     ortho_skeletal: {
-      label: "骨性問題",
-      detect_keywords: ["戳地包天", "下巴前突", "上顎前突", "骨性", "skeletal"],
+      label: "bony問題",
+      detect_keywords: ["戳地swellingdays", "lower巴anteriorsudden", "maxillaryanteriorsudden", "bony", "skeletal"],
       items: [
-        { id: "ortho_sk_class", label: "Skeletal class", keywords: ["Class", "骨性"] },
-        { id: "ortho_sk_growth", label: "生長狀態", keywords: ["生長", "發育", "青少年"] },
+        { id: "ortho_sk_class", label: "Skeletal class", keywords: ["Class", "bony"] },
+        { id: "ortho_sk_growth", label: "growth狀態", keywords: ["growth", "發育", "青few年"] },
       ],
       red_flags: []
     },
   },
   level_2: [
-    { id: "ortho_pmh", label: "PMH", keywords: ["病史", "PMH"] },
-    { id: "ortho_pdh", label: "PDH", keywords: ["牙科", "PDH"] },
-    { id: "ortho_tmj", label: "TMJ", keywords: ["TMJ", "關節", "彈響", "clicking"] },
-    { id: "ortho_imaging", label: "影像", keywords: ["Ceph", "Pano", "CBCT", "X光"] },
-    { id: "ortho_extraction", label: "拔牙計畫", keywords: ["拔牙", "extraction", "拔"] },
+    { id: "ortho_pmh", label: "PMH", keywords: ["history", "PMH"] },
+    { id: "ortho_pdh", label: "PDH", keywords: ["tooth科", "PDH"] },
+    { id: "ortho_tmj", label: "TMJ", keywords: ["TMJ", "joint", "clicking", "clicking"] },
+    { id: "ortho_imaging", label: "Imaging", keywords: ["Ceph", "Pano", "CBCT", "XX-ray"] },
+    { id: "ortho_extraction", label: "extractionplan", keywords: ["extraction", "extraction", "拔"] },
   ]
 };
 
@@ -1690,41 +1690,41 @@ function buildEndoSoapForm() {
 /* ---------- Endo SOP checklist items ---------- */
 const SOP_ITEMS_ENDO = {
   level_0: [
-    { id: "endo_cc", label: "CC (主訴)", keywords: ["主訴", "痛", "牙痛", "CC"] },
-    { id: "endo_pi", label: "PI", keywords: ["開始", "何時", "多久"] },
-    { id: "endo_pain", label: "疼痛描述", keywords: ["痛", "刺", "酸", "自發", "熱痛", "冷痛", "持續"] },
-    { id: "endo_tooth", label: "患齒位置", keywords: ["#", "牙齒", "哪一顏", "欲"] },
+    { id: "endo_cc", label: "CC (Chief Complaint)", keywords: ["Chief Complaint", "pain", "toothache", "CC"] },
+    { id: "endo_pi", label: "PI", keywords: ["started", "when", "how long"] },
+    { id: "endo_pain", label: "Pain描述", keywords: ["pain", "sharp", "sore", "spontaneous", "hotpain", "coldpain", "continuous"] },
+    { id: "endo_tooth", label: "患齒location", keywords: ["#", "teeth", "which tooth", "欲"] },
   ],
   level_1_modules: {
     endo_irreversible: {
-      label: "不可逆性牙髄炎",
-      detect_keywords: ["自發痛", "功能痛", "熱痛", "持續痛", "irreversible"],
+      label: "no可逆typetooth髄炎",
+      detect_keywords: ["spontaneouspain", "功能pain", "hotpain", "continuouspain", "irreversible"],
       items: [
-        { id: "endo_ir_spontaneous", label: "自發性疼痛", keywords: ["自發", "沒有刺激也痛"] },
-        { id: "endo_ir_lingering", label: "滯留痛", keywords: ["持續", "很久才消", "lingering"] },
+        { id: "endo_ir_spontaneous", label: "spontaneous pain", keywords: ["spontaneous", "noyesirritation也pain"] },
+        { id: "endo_ir_lingering", label: "滯留pain", keywords: ["continuous", "很久才消", "lingering"] },
       ],
       red_flags: [
-        { id: "endo_ir_swelling", label: "腫脹", keywords: ["腫", "膨", "膿"] }
+        { id: "endo_ir_swelling", label: "Swelling", keywords: ["swelling", "膨", "pus"] }
       ]
     },
     endo_necrosis: {
-      label: "牙髄壞死",
-      detect_keywords: ["沒有感覺", "死牙", "變色", "necrosis"],
+      label: "tooth髄necrotic死",
+      detect_keywords: ["noyes感覺", "死tooth", "discoloration", "necrosis"],
       items: [
-        { id: "endo_ne_sinus", label: "瘤管", keywords: ["瘤管", "sinus tract", "包"] },
-        { id: "endo_ne_discolor", label: "變色", keywords: ["變色", "黑", "暗"] },
+        { id: "endo_ne_sinus", label: "tumor管", keywords: ["tumor管", "sinus tract", "swelling"] },
+        { id: "endo_ne_discolor", label: "discoloration", keywords: ["discoloration", "dark", "暗"] },
       ],
       red_flags: [
-        { id: "endo_ne_cellulitis", label: "蜂窝性組織炎", keywords: ["擴散", "口底", "嘴巴張不開"] }
+        { id: "endo_ne_cellulitis", label: "蜂窝typetissue炎", keywords: ["擴散", "口底", "嘴巴cannot open"] }
       ]
     },
   },
   level_2: [
-    { id: "endo_pmh", label: "PMH", keywords: ["病史", "PMH"] },
-    { id: "endo_meds", label: "Meds", keywords: ["藥", "止痛"] },
-    { id: "endo_allergy", label: "Allergy", keywords: ["過敏"] },
-    { id: "endo_vitality", label: "活性測試", keywords: ["EPT", "cold", "冷測", "電測"] },
-    { id: "endo_xray", label: "X-ray", keywords: ["PA", "根尖", "X光", "放射線"] },
+    { id: "endo_pmh", label: "PMH", keywords: ["history", "PMH"] },
+    { id: "endo_meds", label: "Meds", keywords: ["medication", "painkiller"] },
+    { id: "endo_allergy", label: "Allergy", keywords: ["allergy"] },
+    { id: "endo_vitality", label: "vitaltype測試", keywords: ["EPT", "cold", "cold test", "EPT"] },
+    { id: "endo_xray", label: "X-ray", keywords: ["PA", "periapical", "XX-ray", "radiation"] },
   ]
 };
 
@@ -1757,19 +1757,19 @@ function buildPedoSoapForm() {
     <div class="card-head"><div class="badge s">S</div><div class="card-head-text"><b>Subjective</b><span>History</span></div></div>
     <div class="card-body">
       <div class="grid-2">
-        <div class="field"><label>主訴 (CC)</label><textarea name="s_cc" rows="2" placeholder=""></textarea></div>
-        <div class="field"><label>現病史 (PI)</label><textarea name="s_pi" rows="2" placeholder=""></textarea></div>
+        <div class="field"><label>Chief Complaint (CC)</label><textarea name="s_cc" rows="2" placeholder=""></textarea></div>
+        <div class="field"><label>現history (PI)</label><textarea name="s_pi" rows="2" placeholder=""></textarea></div>
       </div>
-      <fieldset class="inner-fieldset"><legend>過去病史 (PMH)</legend>
+      <fieldset class="inner-fieldset"><legend>過去history (PMH)</legend>
         <div class="grid-2">
           <div class="field"><label>Systemic disease</label><input type="text" name="s_pmh_systemic" placeholder="" /></div>
           <div class="field"><label>Drug Allergy</label><input type="text" name="s_pmh_allergy" placeholder="" /></div>
         </div>
         <div class="grid-2">
-          <div class="field"><label>目前用藥</label><input type="text" name="s_meds" placeholder="" /></div>
+          <div class="field"><label>itemanteriorusemedication</label><input type="text" name="s_meds" placeholder="" /></div>
           <div class="field"><label>最近三個月旅遊史</label><input type="text" name="s_travel" placeholder="" /></div>
         </div>
-        <div class="field"><label>家族病史</label><input type="text" name="s_fh" placeholder="" /></div>
+        <div class="field"><label>familyhistory</label><input type="text" name="s_fh" placeholder="" /></div>
       </fieldset>
     </div>
   </div>
@@ -1886,40 +1886,40 @@ function buildPedoSoapForm() {
 /* ---------- Pedo SOP checklist items ---------- */
 const SOP_ITEMS_PEDO = {
   level_0: [
-    { id: "pedo_cc", label: "CC", keywords: ["主訴", "痛", "CC"] },
-    { id: "pedo_pi", label: "PI", keywords: ["開始", "何時", "多久"] },
-    { id: "pedo_behavior", label: "行為", keywords: ["配合", "哭", "不配合", "害怕"] },
-    { id: "pedo_pain", label: "疼痛", keywords: ["痛", "不舒服"] },
+    { id: "pedo_cc", label: "CC", keywords: ["Chief Complaint", "pain", "CC"] },
+    { id: "pedo_pi", label: "PI", keywords: ["started", "when", "how long"] },
+    { id: "pedo_behavior", label: "行為", keywords: ["配合", "哭", "no配合", "害怕"] },
+    { id: "pedo_pain", label: "Pain", keywords: ["pain", "discomfort"] },
   ],
   level_1_modules: {
     pedo_caries: {
-      label: "齲齒",
-      detect_keywords: ["蛀牙", "齲齒", "黑", "洞", "caries"],
+      label: "caries",
+      detect_keywords: ["caries", "caries", "dark", "cavity", "caries"],
       items: [
-        { id: "pedo_ca_location", label: "位置", keywords: ["哪一顏", "上面", "下面"] },
-        { id: "pedo_ca_severity", label: "嚴重度", keywords: ["深", "淺", "大洞"] },
+        { id: "pedo_ca_location", label: "location", keywords: ["which tooth", "uppersurface", "lowersurface"] },
+        { id: "pedo_ca_severity", label: "severesevere", keywords: ["deep", "shallow", "largecavity"] },
       ],
       red_flags: [
-        { id: "pedo_ca_abscess", label: "膿腫", keywords: ["腫", "膿", "化膿"] }
+        { id: "pedo_ca_abscess", label: "pusswelling", keywords: ["swelling", "pus", "changepus"] }
       ]
     },
     pedo_eruption: {
-      label: "萌牙問題",
-      detect_keywords: ["長牙", "萌牙", "換牙", "乳牙沒掉"],
+      label: "萌tooth問題",
+      detect_keywords: ["長tooth", "萌tooth", "換tooth", "primary teethnofallen"],
       items: [
-        { id: "pedo_er_stage", label: "萌牙階段", keywords: ["開始長", "快掉"] },
-        { id: "pedo_er_space", label: "空間", keywords: ["空間", "擁擠", "歪"] },
+        { id: "pedo_er_stage", label: "萌tooth階段", keywords: ["started長", "快fallen"] },
+        { id: "pedo_er_space", label: "space", keywords: ["space", "crowding", "歪"] },
       ],
       red_flags: []
     },
   },
   level_2: [
-    { id: "pedo_pmh", label: "PMH", keywords: ["病史", "PMH"] },
-    { id: "pedo_allergy", label: "Allergy", keywords: ["過敏"] },
-    { id: "pedo_meds", label: "Meds", keywords: ["藥"] },
-    { id: "pedo_fh", label: "家族史", keywords: ["家族", "父母", "遺傳"] },
-    { id: "pedo_ohi", label: "OHI", keywords: ["刷牙", "潔牙", "口腔衛生"] },
-    { id: "pedo_xray", label: "X-ray", keywords: ["PA", "Pano", "X光"] },
+    { id: "pedo_pmh", label: "PMH", keywords: ["history", "PMH"] },
+    { id: "pedo_allergy", label: "Allergy", keywords: ["allergy"] },
+    { id: "pedo_meds", label: "Meds", keywords: ["medication"] },
+    { id: "pedo_fh", label: "family史", keywords: ["family", "父母", "遺傳"] },
+    { id: "pedo_ohi", label: "OHI", keywords: ["刷tooth", "潔tooth", "oral hygiene"] },
+    { id: "pedo_xray", label: "X-ray", keywords: ["PA", "Pano", "XX-ray"] },
   ]
 };
 
@@ -2201,39 +2201,39 @@ function buildPerioSoapForm() {
 /* ---------- Perio SOP checklist items ---------- */
 const SOP_ITEMS_PERIO = {
   level_0: [
-    { id: "perio_cc", label: "CC", keywords: ["主訴", "牙齦", "流血", "CC"] },
-    { id: "perio_pi", label: "PI", keywords: ["開始", "何時", "多久"] },
-    { id: "perio_bleeding", label: "出血", keywords: ["流血", "出血", "刷牙流血"] },
-    { id: "perio_loose", label: "牙齒動搖", keywords: ["搖", "動", "鬆", "mobility"] },
+    { id: "perio_cc", label: "CC", keywords: ["Chief Complaint", "gingiva", "bleeding", "CC"] },
+    { id: "perio_pi", label: "PI", keywords: ["started", "when", "how long"] },
+    { id: "perio_bleeding", label: "bleeding", keywords: ["bleeding", "bleeding", "刷toothbleeding"] },
+    { id: "perio_loose", label: "teeth動mobile", keywords: ["mobile", "動", "loose", "mobility"] },
   ],
   level_1_modules: {
     perio_periodontitis: {
-      label: "牙周炎",
-      detect_keywords: ["牙周", "牙齦腫", "流血", "深包", "periodontitis"],
+      label: "periodontal炎",
+      detect_keywords: ["periodontal", "gingivaswelling", "bleeding", "deepswelling", "periodontitis"],
       items: [
-        { id: "perio_pd_stage", label: "Stage", keywords: ["Stage", "嚴重度"] },
-        { id: "perio_pd_grade", label: "Grade", keywords: ["Grade", "進展"] },
+        { id: "perio_pd_stage", label: "Stage", keywords: ["Stage", "severesevere"] },
+        { id: "perio_pd_grade", label: "Grade", keywords: ["Grade", "Progression"] },
       ],
       red_flags: [
-        { id: "perio_pd_abscess", label: "牙周膿腫", keywords: ["膿", "腫", "化膿"] }
+        { id: "perio_pd_abscess", label: "periodontalpusswelling", keywords: ["pus", "swelling", "changepus"] }
       ]
     },
     perio_recession: {
-      label: "牙齦萎縮",
-      detect_keywords: ["萎縮", "露出", "牙根", "recession"],
+      label: "gingiva萎縮",
+      detect_keywords: ["萎縮", "露出", "root", "recession"],
       items: [
-        { id: "perio_re_location", label: "位置", keywords: ["哪邊", "前牙", "後牙"] },
+        { id: "perio_re_location", label: "location", keywords: ["which side", "anteriortooth", "posteriortooth"] },
         { id: "perio_re_class", label: "Miller class", keywords: ["Miller", "class"] },
       ],
       red_flags: []
     },
   },
   level_2: [
-    { id: "perio_pmh", label: "PMH", keywords: ["病史", "PMH", "糖尿", "高血壓"] },
-    { id: "perio_allergy", label: "Allergy", keywords: ["過敏"] },
-    { id: "perio_habits", label: "菸酒檳槔", keywords: ["菸", "酒", "檳槔", "smoking"] },
-    { id: "perio_ohi", label: "OHI", keywords: ["刷牙", "潔牙", "口腔衛生"] },
-    { id: "perio_xray", label: "X-ray", keywords: ["PA", "Pano", "X光", "bitewing"] },
+    { id: "perio_pmh", label: "PMH", keywords: ["history", "PMH", "diabetes", "hypertension"] },
+    { id: "perio_allergy", label: "Allergy", keywords: ["allergy"] },
+    { id: "perio_habits", label: "smokingalcoholbetel nut", keywords: ["smoking", "alcohol", "betel nut", "smoking"] },
+    { id: "perio_ohi", label: "OHI", keywords: ["刷tooth", "潔tooth", "oral hygiene"] },
+    { id: "perio_xray", label: "X-ray", keywords: ["PA", "Pano", "XX-ray", "bitewing"] },
   ]
 };
 
@@ -2401,38 +2401,38 @@ function buildGdSoapForm() {
 /* ---------- GD SOP checklist items ---------- */
 const SOP_ITEMS_GD = {
   level_0: [
-    { id: "gd_cc", label: "CC", keywords: ["主訴", "痛", "CC"] },
-    { id: "gd_pi", label: "PI", keywords: ["開始", "何時", "多久"] },
-    { id: "gd_location", label: "位置", keywords: ["哪一顏", "上面", "下面", "左邊", "右邊"] },
+    { id: "gd_cc", label: "CC", keywords: ["Chief Complaint", "pain", "CC"] },
+    { id: "gd_pi", label: "PI", keywords: ["started", "when", "how long"] },
+    { id: "gd_location", label: "location", keywords: ["which tooth", "uppersurface", "lowersurface", "left邊", "right邊"] },
   ],
   level_1_modules: {
     gd_caries: {
-      label: "齲齒",
-      detect_keywords: ["蛀牙", "齲齒", "黑", "洞", "caries"],
+      label: "caries",
+      detect_keywords: ["caries", "caries", "dark", "cavity", "caries"],
       items: [
-        { id: "gd_ca_location", label: "位置", keywords: ["哪一顏"] },
-        { id: "gd_ca_severity", label: "嚴重度", keywords: ["深", "淺"] },
+        { id: "gd_ca_location", label: "location", keywords: ["which tooth"] },
+        { id: "gd_ca_severity", label: "severesevere", keywords: ["deep", "shallow"] },
       ],
       red_flags: [
-        { id: "gd_ca_pain", label: "自發痛", keywords: ["自發", "夜間痛"] }
+        { id: "gd_ca_pain", label: "spontaneouspain", keywords: ["spontaneous", "Night Pain"] }
       ]
     },
     gd_perio: {
-      label: "牙周問題",
-      detect_keywords: ["流血", "牙齦腫", "搖動"],
+      label: "periodontal問題",
+      detect_keywords: ["bleeding", "gingivaswelling", "mobile動"],
       items: [
-        { id: "gd_pe_bleeding", label: "出血", keywords: ["流血", "出血"] },
-        { id: "gd_pe_mobility", label: "搖動", keywords: ["搖", "鬆"] },
+        { id: "gd_pe_bleeding", label: "bleeding", keywords: ["bleeding", "bleeding"] },
+        { id: "gd_pe_mobility", label: "mobile動", keywords: ["mobile", "loose"] },
       ],
       red_flags: []
     },
   },
   level_2: [
-    { id: "gd_pmh", label: "PMH", keywords: ["病史", "PMH"] },
-    { id: "gd_allergy", label: "Allergy", keywords: ["過敏"] },
-    { id: "gd_meds", label: "Meds", keywords: ["藥"] },
-    { id: "gd_habits", label: "Habits", keywords: ["菸", "酒", "檳槔"] },
-    { id: "gd_xray", label: "X-ray", keywords: ["PA", "Pano", "BW", "X光"] },
+    { id: "gd_pmh", label: "PMH", keywords: ["history", "PMH"] },
+    { id: "gd_allergy", label: "Allergy", keywords: ["allergy"] },
+    { id: "gd_meds", label: "Meds", keywords: ["medication"] },
+    { id: "gd_habits", label: "Habits", keywords: ["smoking", "alcohol", "betel nut"] },
+    { id: "gd_xray", label: "X-ray", keywords: ["PA", "Pano", "BW", "XX-ray"] },
   ]
 };
 
@@ -2779,20 +2779,20 @@ function buildPedoDcForm() {
 const SOP_ITEMS_PEDO_DC = {
   level_0: [
     { id: "pdc_adm_dx", label: "Adm Dx", keywords: ["入院", "診斷", "admission"] },
-    { id: "pdc_dc_dx", label: "Dc Dx", keywords: ["出院", "discharge"] },
-    { id: "pdc_cc", label: "CC", keywords: ["主訴", "CC"] },
-    { id: "pdc_pi", label: "PI", keywords: ["現病史", "PI"] },
+    { id: "pdc_dc_dx", label: "Dc Dx", keywords: ["discharge", "discharge"] },
+    { id: "pdc_cc", label: "CC", keywords: ["Chief Complaint", "CC"] },
+    { id: "pdc_pi", label: "PI", keywords: ["現history", "PI"] },
   ],
   level_1_modules: {},
   level_2: [
-    { id: "pdc_pmh", label: "PMH", keywords: ["病史", "PMH"] },
-    { id: "pdc_allergy", label: "Allergy", keywords: ["過敏"] },
-    { id: "pdc_birth", label: "Birth Hx", keywords: ["出生", "懷孕", "分娩"] },
+    { id: "pdc_pmh", label: "PMH", keywords: ["history", "PMH"] },
+    { id: "pdc_allergy", label: "Allergy", keywords: ["allergy"] },
+    { id: "pdc_birth", label: "Birth Hx", keywords: ["出生", "pregnancy", "分娩"] },
     { id: "pdc_vax", label: "Vaccination", keywords: ["疫苗", "接種"] },
     { id: "pdc_vs", label: "Vital signs", keywords: ["體溫", "脈搏", "血壓"] },
     { id: "pdc_pe", label: "PE", keywords: ["身體檢查", "PE"] },
-    { id: "pdc_oral", label: "Oral findings", keywords: ["口腔", "牙齒", "牙齦"] },
-    { id: "pdc_xray", label: "X-ray", keywords: ["X光", "放射線"] },
+    { id: "pdc_oral", label: "Oral findings", keywords: ["口腔", "teeth", "gingiva"] },
+    { id: "pdc_xray", label: "X-ray", keywords: ["XX-ray", "radiation"] },
   ]
 };
 
@@ -2956,42 +2956,42 @@ function buildProsSoapForm() {
 /* ---------- Prostho SOP checklist items ---------- */
 const SOP_ITEMS_PROS = {
   level_0: [
-    { id: "pros_cc", label: "CC", keywords: ["主訴", "缺牙", "假牙", "CC"] },
-    { id: "pros_pi", label: "PI", keywords: ["開始", "何時", "多久"] },
-    { id: "pros_missing", label: "缺牙", keywords: ["缺", "拔", "掉", "沒有"] },
+    { id: "pros_cc", label: "CC", keywords: ["Chief Complaint", "missing tooth", "denture", "CC"] },
+    { id: "pros_pi", label: "PI", keywords: ["started", "when", "how long"] },
+    { id: "pros_missing", label: "missing tooth", keywords: ["缺", "拔", "fallen", "noyes"] },
   ],
   level_1_modules: {
     pros_rpd: {
-      label: "活動假牙",
-      detect_keywords: ["活動假牙", "RPD", "可摘", "取下"],
+      label: "removable denture",
+      detect_keywords: ["removable denture", "RPD", "可摘", "取lower"],
       items: [
-        { id: "pros_rpd_type", label: "類型", keywords: ["RPD", "金屬", "樹脂"] },
+        { id: "pros_rpd_type", label: "type", keywords: ["RPD", "metal", "樹脂"] },
       ],
       red_flags: []
     },
     pros_fpd: {
-      label: "固定義齒",
-      detect_keywords: ["牙套", "牙橋", "FPD", "crown", "固定"],
+      label: "fixed義齒",
+      detect_keywords: ["tooth套", "tooth橋", "FPD", "crown", "fixed"],
       items: [
-        { id: "pros_fpd_type", label: "類型", keywords: ["crown", "bridge"] },
+        { id: "pros_fpd_type", label: "type", keywords: ["crown", "bridge"] },
       ],
       red_flags: []
     },
     pros_implant: {
-      label: "植牙",
-      detect_keywords: ["植牙", "implant", "人工牙根"],
+      label: "implant",
+      detect_keywords: ["implant", "implant", "人工root"],
       items: [
-        { id: "pros_imp_site", label: "位置", keywords: ["哪一顏"] },
-        { id: "pros_imp_bone", label: "骨質", keywords: ["骨頭", "骨質", "CBCT"] },
+        { id: "pros_imp_site", label: "location", keywords: ["which tooth"] },
+        { id: "pros_imp_bone", label: "bone quality", keywords: ["bone", "bone quality", "CBCT"] },
       ],
       red_flags: []
     },
   },
   level_2: [
-    { id: "pros_pmh", label: "PMH", keywords: ["病史", "PMH"] },
-    { id: "pros_allergy", label: "Allergy", keywords: ["過敏"] },
-    { id: "pros_meds", label: "Meds", keywords: ["藥"] },
-    { id: "pros_xray", label: "X-ray", keywords: ["PA", "Pano", "CBCT", "X光"] },
+    { id: "pros_pmh", label: "PMH", keywords: ["history", "PMH"] },
+    { id: "pros_allergy", label: "Allergy", keywords: ["allergy"] },
+    { id: "pros_meds", label: "Meds", keywords: ["medication"] },
+    { id: "pros_xray", label: "X-ray", keywords: ["PA", "Pano", "CBCT", "XX-ray"] },
   ]
 };
 
@@ -3201,139 +3201,139 @@ function buildImplantSoapForm() {
 /* ---------- Implant SOP checklist items ---------- */
 const SOP_ITEMS_IMPLANT = {
   level_0: [
-    { id: "imp_cc", label: "CC", keywords: ["主訴", "植牙", "缺牙", "CC"] },
-    { id: "imp_pi", label: "PI", keywords: ["開始", "何時", "多久"] },
-    { id: "imp_site", label: "植牙位置", keywords: ["哪一顏", "位置", "site"] },
+    { id: "imp_cc", label: "CC", keywords: ["Chief Complaint", "implant", "missing tooth", "CC"] },
+    { id: "imp_pi", label: "PI", keywords: ["started", "when", "how long"] },
+    { id: "imp_site", label: "implantlocation", keywords: ["which tooth", "location", "site"] },
   ],
   level_1_modules: {
     imp_bone: {
-      label: "骨質評估",
-      detect_keywords: ["骨頭", "骨質", "CBCT", "高度", "寬度"],
+      label: "bone qualityassessment",
+      detect_keywords: ["bone", "bone quality", "CBCT", "高度", "寬度"],
       items: [
         { id: "imp_bone_h", label: "骨高", keywords: ["高度", "height"] },
         { id: "imp_bone_w", label: "骨寬", keywords: ["寬度", "width"] },
         { id: "imp_nerve", label: "神經/竊竇", keywords: ["神經", "竊竇", "sinus", "IAN"] },
       ],
       red_flags: [
-        { id: "imp_bisphos", label: "Bisphosphonate", keywords: ["bisphosphonate", "雙磷酸鹽"] }
+        { id: "imp_bisphos", label: "Bisphosphonate", keywords: ["bisphosphonate", "bisphosphonatesore鹽"] }
       ]
     },
     imp_graft: {
-      label: "補骨",
-      detect_keywords: ["補骨", "bone graft", "骨粉"],
+      label: "bone graft",
+      detect_keywords: ["bone graft", "bone graft", "骨粉"],
       items: [
-        { id: "imp_graft_type", label: "類型", keywords: ["自體骨", "異體骨"] },
+        { id: "imp_graft_type", label: "type", keywords: ["自體骨", "異體骨"] },
       ],
       red_flags: []
     },
   },
   level_2: [
-    { id: "imp_pmh", label: "PMH", keywords: ["病史", "PMH", "糖尿"] },
-    { id: "imp_allergy", label: "Allergy", keywords: ["過敏"] },
-    { id: "imp_meds", label: "Meds", keywords: ["藥", "抗凝血"] },
-    { id: "imp_habits", label: "Habits", keywords: ["菸", "檳槔"] },
-    { id: "imp_xray", label: "X-ray", keywords: ["CBCT", "Pano", "PA", "X光"] },
+    { id: "imp_pmh", label: "PMH", keywords: ["history", "PMH", "diabetes"] },
+    { id: "imp_allergy", label: "Allergy", keywords: ["allergy"] },
+    { id: "imp_meds", label: "Meds", keywords: ["medication", "抗coagulation"] },
+    { id: "imp_habits", label: "Habits", keywords: ["smoking", "betel nut"] },
+    { id: "imp_xray", label: "X-ray", keywords: ["CBCT", "Pano", "PA", "XX-ray"] },
   ]
 };
 
 const SOP_ITEMS_OS = {
   level_0: [
-    { id: "os_cc", label: "CC", keywords: ["主訴", "怎麼了", "CC"] },
-    { id: "os_pi", label: "PI", keywords: ["開始", "何時", "多久"] },
-    { id: "os_swelling", label: "腫脹", keywords: ["腫", "包", "膊"] },
-    { id: "os_pain", label: "疼痛", keywords: ["痛", "疼", "不舒服"] },
+    { id: "os_cc", label: "CC", keywords: ["Chief Complaint", "what's wrong", "CC"] },
+    { id: "os_pi", label: "PI", keywords: ["started", "when", "how long"] },
+    { id: "os_swelling", label: "Swelling", keywords: ["swelling", "swelling", "膊"] },
+    { id: "os_pain", label: "Pain", keywords: ["pain", "pain", "discomfort"] },
   ],
   level_1_modules: {
     os_infection: {
-      label: "感染",
-      detect_keywords: ["感染", "膿", "發燒", "蜂窩", "abscess"],
+      label: "infection",
+      detect_keywords: ["infection", "pus", "fever", "蜂窩", "abscess"],
       items: [
-        { id: "os_inf_fever", label: "Fever", keywords: ["發燒", "fever"] },
-        { id: "os_inf_drainage", label: "Drainage", keywords: ["膿", "引流"] },
+        { id: "os_inf_fever", label: "Fever", keywords: ["fever", "fever"] },
+        { id: "os_inf_drainage", label: "Drainage", keywords: ["pus", "drainage"] },
       ],
       red_flags: [
-        { id: "os_rf_airway", label: "呼吸道風險", keywords: ["呼吸", "窒息"] }
+        { id: "os_rf_airway", label: "呼吸道風險", keywords: ["呼吸", "suffocation"] }
       ]
     },
     os_tumor: {
-      label: "腫瘤",
-      detect_keywords: ["腫瘤", "tumor", "填", "塞", "腫塊"],
+      label: "swellingtumor",
+      detect_keywords: ["swellingtumor", "tumor", "填", "塞", "Mass"],
       items: [
-        { id: "os_tum_biopsy", label: "Biopsy", keywords: ["biopsy", "切片"] },
+        { id: "os_tum_biopsy", label: "Biopsy", keywords: ["biopsy", "biopsy"] },
       ],
       red_flags: []
     },
   },
   level_2: [
-    { id: "os_pmh", label: "PMH", keywords: ["病史", "PMH", "糖尿", "高血壓"] },
-    { id: "os_allergy", label: "Allergy", keywords: ["過敏"] },
-    { id: "os_meds", label: "Meds", keywords: ["藥", "抗凝血"] },
-    { id: "os_habits", label: "Habits", keywords: ["菸", "酒", "檳槔"] },
-    { id: "os_xray", label: "X-ray", keywords: ["PA", "Pano", "CT", "CBCT", "MRI", "X光"] },
+    { id: "os_pmh", label: "PMH", keywords: ["history", "PMH", "diabetes", "hypertension"] },
+    { id: "os_allergy", label: "Allergy", keywords: ["allergy"] },
+    { id: "os_meds", label: "Meds", keywords: ["medication", "抗coagulation"] },
+    { id: "os_habits", label: "Habits", keywords: ["smoking", "alcohol", "betel nut"] },
+    { id: "os_xray", label: "X-ray", keywords: ["PA", "Pano", "CT", "CBCT", "MRI", "XX-ray"] },
   ]
 };
 /* ---------- OPDX SOP checklist items ---------- */
 const SOP_ITEMS_OPDX = {
   level_0: [
-    { id: "opdx_cc", label: "CC (主訴)", keywords: ["主訴", "怎麼了", "哪裡不舒服", "看什麼", "CC"] },
-    { id: "opdx_pi", label: "PI", keywords: ["開始", "何時", "多久", "病史"] },
-    { id: "opdx_progression", label: "Progression", keywords: ["變大", "惡化", "穩定", "變化"] },
-    { id: "opdx_lesion", label: "病灶描述", keywords: ["破", "腫", "白", "紅", "斑", "潰瘍"] },
-    { id: "opdx_trauma", label: "創傷史", keywords: ["咬", "假牙", "尖", "割到", "刺到"] },
-    { id: "opdx_pain", label: "疼痛", keywords: ["痛", "不痛"] },
+    { id: "opdx_cc", label: "CC (Chief Complaint)", keywords: ["Chief Complaint", "what's wrong", "where hurts", "看什麼", "CC"] },
+    { id: "opdx_pi", label: "PI", keywords: ["started", "when", "how long", "history"] },
+    { id: "opdx_progression", label: "Progression", keywords: ["enlarging", "worsening", "stable", "change"] },
+    { id: "opdx_lesion", label: "病灶描述", keywords: ["broken", "swelling", "white", "red", "plaque", "ulcer"] },
+    { id: "opdx_trauma", label: "創傷史", keywords: ["chewing", "denture", "尖", "割到", "sharp到"] },
+    { id: "opdx_pain", label: "Pain", keywords: ["pain", "nopain"] },
   ],
   level_1_modules: {
     opdx_ulcer: {
-      label: "潰瘍",
-      detect_keywords: ["潰瘍", "破", "嘴破", "口瘡"],
+      label: "ulcer",
+      detect_keywords: ["ulcer", "broken", "嘴broken", "canker sore"],
       items: [
-        { id: "opdx_ul_duration", label: "持續時間", keywords: ["多久", "幾天", "幾週"] },
-        { id: "opdx_ul_pain", label: "疼痛程度", keywords: ["痛", "不痛", "刺激"] },
-        { id: "opdx_ul_recurrence", label: "復發與否", keywords: ["反覆", "之前也有", "常破"] },
-        { id: "opdx_ul_base", label: "Base/Margin", keywords: ["底", "邊緣", "硬"] }
+        { id: "opdx_ul_duration", label: "Duration", keywords: ["how long", "days", "weeks"] },
+        { id: "opdx_ul_pain", label: "Pain Level", keywords: ["pain", "nopain", "irritation"] },
+        { id: "opdx_ul_recurrence", label: "復發與no", keywords: ["recurrent", "ofanterior也yes", "常broken"] },
+        { id: "opdx_ul_base", label: "Base/Margin", keywords: ["底", "margin", "hard"] }
       ],
       red_flags: [
-        { id: "opdx_ul_nonhealing", label: "逾兩週未癒", keywords: ["兩週", "一個月", "很久沒好", "不會好"] },
-        { id: "opdx_ul_induration", label: "硬結感(Induration)", keywords: ["硬", "結節", "推不動"] }
+        { id: "opdx_ul_nonhealing", label: "逾兩週未癒", keywords: ["兩週", "一個月", "很久no好", "not healing"] },
+        { id: "opdx_ul_induration", label: "Induration感(Induration)", keywords: ["hard", "nodule", "推no動"] }
       ]
     },
     opdx_white_red: {
-      label: "白斑/紅斑",
-      detect_keywords: ["白斑", "紅斑", "白白", "紅紅", "斑", "變色"],
+      label: "leukoplakia/erythroplakia",
+      detect_keywords: ["leukoplakia", "erythroplakia", "whitewhite", "redred", "plaque", "discoloration"],
       items: [
-        { id: "opdx_wr_texture", label: "表面質地", keywords: ["粗糙", "平滑", "凸起", "平坦"] },
-        { id: "opdx_wr_wipe", label: "能否擦去", keywords: ["擦掉", "刮不掉", "摳"] },
-        { id: "opdx_wr_habits", label: "危險因子", keywords: ["菸", "酒", "檳榔"] }
+        { id: "opdx_wr_texture", label: "表surfaceConsistency", keywords: ["粗糙", "平滑", "凸起", "平坦"] },
+        { id: "opdx_wr_wipe", label: "能no擦去", keywords: ["擦fallen", "刮nofallen", "摳"] },
+        { id: "opdx_wr_habits", label: "危險因子", keywords: ["smoking", "alcohol", "betel nut"] }
       ],
       red_flags: [
-        { id: "opdx_wr_speckled", label: "斑雜狀(Speckled)", keywords: ["紅白", "夾雜", "speckled"] },
-        { id: "opdx_wr_ulcerative", label: "伴隨潰瘍", keywords: ["破爛", "潰爛", "流血"] }
+        { id: "opdx_wr_speckled", label: "plaque雜狀(Speckled)", keywords: ["redwhite", "夾雜", "speckled"] },
+        { id: "opdx_wr_ulcerative", label: "伴隨ulcer", keywords: ["broken爛", "潰爛", "bleeding"] }
       ]
     },
     opdx_swelling: {
-      label: "腫塊",
-      detect_keywords: ["腫塊", "包", "瘤", "凸起", "肉"],
+      label: "Mass",
+      detect_keywords: ["Mass", "swelling", "tumor", "凸起", "肉"],
       items: [
-        { id: "opdx_sw_growth", label: "生長速度", keywords: ["變大", "生長", "快", "慢"] },
-        { id: "opdx_sw_consistency", label: "軟硬度", keywords: ["軟", "硬", "彈"] },
-        { id: "opdx_sw_mobility", label: "可動性", keywords: ["可動", "推動", "固定", "連著"] }
+        { id: "opdx_sw_growth", label: "Growth Rate", keywords: ["enlarging", "growth", "快", "慢"] },
+        { id: "opdx_sw_consistency", label: "softhard度", keywords: ["soft", "hard", "click"] },
+        { id: "opdx_sw_mobility", label: "可動type", keywords: ["可動", "推動", "fixed", "連著"] }
       ],
       red_flags: [
-        { id: "opdx_sw_fixed", label: "固定於底層", keywords: ["推不動", "黏著", "固定"] },
-        { id: "opdx_sw_rapid", label: "生長快速", keywords: ["突然變很大", "很快變大"] }
+        { id: "opdx_sw_fixed", label: "fixed於底層", keywords: ["推no動", "cementation", "fixed"] },
+        { id: "opdx_sw_rapid", label: "growth快速", keywords: ["sudden變很large", "很快enlarging"] }
       ]
     }
   },
   level_2: [
-    { id: "opdx_pmh", label: "PMH", keywords: ["病理", "病史", "PMH"] },
-    { id: "opdx_pdh", label: "PDH", keywords: ["牙科", "PDH"] },
-    { id: "opdx_meds", label: "Current Meds", keywords: ["藥", "現行"] },
-    { id: "opdx_allergy", label: "Allergy", old_id: "drug_allergy", keywords: ["過敏"] },
+    { id: "opdx_pmh", label: "PMH", keywords: ["pathology", "history", "PMH"] },
+    { id: "opdx_pdh", label: "PDH", keywords: ["tooth科", "PDH"] },
+    { id: "opdx_meds", label: "Current Meds", keywords: ["medication", "現行"] },
+    { id: "opdx_allergy", label: "Allergy", old_id: "drug_allergy", keywords: ["allergy"] },
     { id: "opdx_tocc", label: "TOCC", keywords: ["旅遊", "職業", "接觸", "群聚"] },
-    { id: "opdx_auto", label: "自體免疫", keywords: ["免疫", "類風濕", "乾燥症", "Sjogren"] },
-    { id: "opdx_fh", label: "家族史/癌症", keywords: ["癌症", "腫瘤", "家族", "遺傳", "FH"] },
-    { id: "opdx_habits", label: "菸酒檳榔", keywords: ["菸", "酒", "檳榔"] },
-    { id: "opdx_bx", label: "切片計畫", keywords: ["切片", "化驗", "biopsy", "病理"] }
+    { id: "opdx_auto", label: "autoimmune", keywords: ["immune", "rheumatoid", "乾燥症", "Sjogren"] },
+    { id: "opdx_fh", label: "family史/癌症", keywords: ["癌症", "swellingtumor", "family", "遺傳", "FH"] },
+    { id: "opdx_habits", label: "smokingalcoholbetel nut", keywords: ["smoking", "alcohol", "betel nut"] },
+    { id: "opdx_bx", label: "biopsyplan", keywords: ["biopsy", "change驗", "biopsy", "pathology"] }
   ]
 };
 
@@ -3519,29 +3519,29 @@ function buildXraySoapForm() {
 /* ---------- XRAY SOP checklist items ---------- */
 const SOP_ITEMS_XRAY = {
   level_0: [
-    { id: "xray_referral", label: "Referral", keywords: ["轉介", "referral", "哪科"] },
-    { id: "xray_clinical_q", label: "Clinical Q", keywords: ["臨床問題", "indication", "目的"] },
-    { id: "xray_target", label: "Target", keywords: ["位置", "哪顆", "區域", "部位"] },
+    { id: "xray_referral", label: "Referral", keywords: ["referral", "referral", "哪科"] },
+    { id: "xray_clinical_q", label: "Clinical Q", keywords: ["臨床問題", "indication", "item的"] },
+    { id: "xray_target", label: "Target", keywords: ["location", "which tooth", "區域", "Site"] },
     { id: "xray_modality", label: "Modality", keywords: ["PA", "pano", "CBCT", "CT", "bitewing"] },
   ],
   level_1_modules: {
     xray_findings: {
-      label: "影像發現",
-      detect_keywords: ["radiolucency", "骨", "蛀", "impacted", "cyst", "tumor", "resorption"],
+      label: "Imaging發現",
+      detect_keywords: ["radiolucency", "骨", "decay", "impacted", "cyst", "tumor", "resorption"],
       items: [
-        { id: "xray_f_caries", label: "Caries", keywords: ["蛀", "caries", "齲齒"] },
-        { id: "xray_f_periap", label: "Periapical", keywords: ["根尖", "radiolucency", "periapical"] },
-        { id: "xray_f_bone", label: "Bone level", keywords: ["骨", "bone level", "骨頭"] },
-        { id: "xray_f_impacted", label: "Impacted", keywords: ["阻生", "impacted", "埋伏"] },
+        { id: "xray_f_caries", label: "Caries", keywords: ["decay", "caries", "caries"] },
+        { id: "xray_f_periap", label: "Periapical", keywords: ["periapical", "radiolucency", "periapical"] },
+        { id: "xray_f_bone", label: "Bone level", keywords: ["骨", "bone level", "bone"] },
+        { id: "xray_f_impacted", label: "Impacted", keywords: ["impacted", "impacted", "埋伏"] },
       ],
       red_flags: [
-        { id: "xray_rf_tumor", label: "Tumor/Cyst", keywords: ["腫瘤", "囊腫", "tumor", "cyst"] },
+        { id: "xray_rf_tumor", label: "Tumor/Cyst", keywords: ["swellingtumor", "囊swelling", "tumor", "cyst"] },
       ]
     },
   },
   level_2: [
     { id: "xray_impression", label: "Impression", keywords: ["印象", "impression", "結論"] },
-    { id: "xray_rec", label: "Recommendation", keywords: ["建議", "recommendation", "追蹤"] },
+    { id: "xray_rec", label: "Recommendation", keywords: ["建議", "recommendation", "follow-up"] },
     { id: "xray_anatomy", label: "Anatomy", keywords: ["鼻竇", "sinus", "神經管", "canal", "TMJ"] },
   ]
 };
@@ -3549,37 +3549,37 @@ const SOP_ITEMS_XRAY = {
 /* ---------- REST (Operative/Restorative/Esthetic) SOP checklist items ---------- */
 const SOP_ITEMS_REST = {
   level_0: [
-    { id: "rest_cc", label: "CC", keywords: ["主訴", "怎麼了", "CC"] },
-    { id: "rest_pi", label: "PI", keywords: ["開始", "何時", "多久"] },
-    { id: "rest_tooth", label: "Tooth #", keywords: ["牙齒", "哪顆", "tooth"] },
-    { id: "rest_pain", label: "Pain", keywords: ["痛", "疼", "敏感"] },
+    { id: "rest_cc", label: "CC", keywords: ["Chief Complaint", "what's wrong", "CC"] },
+    { id: "rest_pi", label: "PI", keywords: ["started", "when", "how long"] },
+    { id: "rest_tooth", label: "Tooth #", keywords: ["teeth", "which tooth", "tooth"] },
+    { id: "rest_pain", label: "Pain", keywords: ["pain", "pain", "敏感"] },
   ],
   level_1_modules: {
     rest_caries: {
-      label: "齲齒",
-      detect_keywords: ["蛀", "黑", "洞", "齲齒", "caries"],
+      label: "caries",
+      detect_keywords: ["decay", "dark", "cavity", "caries", "caries"],
       items: [
-        { id: "rest_caries_depth", label: "Depth", keywords: ["深", "淺", "enamel", "dentin", "pulp"] },
-        { id: "rest_caries_loc", label: "Location", keywords: ["近心", "遠心", "咬合面"] },
+        { id: "rest_caries_depth", label: "Depth", keywords: ["deep", "shallow", "enamel", "dentin", "pulp"] },
+        { id: "rest_caries_loc", label: "Location", keywords: ["近心", "遠心", "occlusionsurface"] },
       ],
       red_flags: []
     },
     rest_esthetic: {
       label: "美容",
-      detect_keywords: ["美白", "顏色", "變色", "黃", "不好看", "美觀"],
+      detect_keywords: ["whitening", "顏色", "discoloration", "黃", "no好看", "美觀"],
       items: [
         { id: "rest_shade", label: "Shade", keywords: ["顏色", "色號", "shade"] },
-        { id: "rest_discol", label: "Discoloration", keywords: ["變色", "黃", "黑"] },
+        { id: "rest_discol", label: "Discoloration", keywords: ["discoloration", "黃", "dark"] },
       ],
       red_flags: []
     },
   },
   level_2: [
-    { id: "rest_pmh", label: "PMH", keywords: ["病史", "PMH"] },
-    { id: "rest_allergy", label: "Allergy", keywords: ["過敏"] },
-    { id: "rest_meds", label: "Meds", keywords: ["藥", "用藥"] },
-    { id: "rest_habits", label: "Habits", keywords: ["磨牙", "菸", "酒"] },
-    { id: "rest_xray", label: "X-ray", keywords: ["PA", "bitewing", "X光"] },
+    { id: "rest_pmh", label: "PMH", keywords: ["history", "PMH"] },
+    { id: "rest_allergy", label: "Allergy", keywords: ["allergy"] },
+    { id: "rest_meds", label: "Meds", keywords: ["medication", "usemedication"] },
+    { id: "rest_habits", label: "Habits", keywords: ["grinding", "smoking", "alcohol"] },
+    { id: "rest_xray", label: "X-ray", keywords: ["PA", "bitewing", "XX-ray"] },
   ]
 };
 
@@ -3817,8 +3817,8 @@ function getMissingFields(limit = 5) {
 
 function buildReminderMessage() {
   const missing = getMissingFields(5);
-  if (missing.length === 0) return "我已更新 SOAP ✅ 目前欄位都已填齊。";
-  const lines = ["我已更新 SOAP ✅\n還差幾個欄位建議補齊："];
+  if (missing.length === 0) return "Updated SOAP ✅ itemanterior欄位都done填齊。";
+  const lines = ["Updated SOAP ✅\n還差幾個欄位建議補齊："];
   for (const key of missing) {
     lines.push(`- ${FIELD_LABELS[key] || key}`);
   }
@@ -3835,28 +3835,28 @@ function quickExtractFromDoctorText(text) {
   const result = {};
 
   // Gender
-  if (/男(性|，|。)?|先生/.test(t)) result.sex = "男性";
-  else if (/女(性|，|。)?|小姐|女士/.test(t)) result.sex = "女性";
+  if (/male(type|，|。)?|先生/.test(t)) result.sex = "maletype";
+  else if (/female(type|，|。)?|small姐|female/.test(t)) result.sex = "femaletype";
 
   // Age
-  const ageM = t.match(/(\d{1,3})歲/);
-  if (ageM) result.age = ageM[1] + "歲";
+  const ageM = t.match(/(\d{1,3})years old/);
+  if (ageM) result.age = ageM[1] + "years old";
 
   // Smoking
-  if (/不抽菸|不吸菸|沒抽菸|無菸|沒有抽/.test(t)) result.risk_smoking = "No";
-  else if (/抽菸|吸菸|菸/.test(t)) result.risk_smoking = "Yes";
+  if (/nosmoking|no吸smoking|nosmoking|nonesmoking|noyes抽/.test(t)) result.risk_smoking = "No";
+  else if (/smoking|吸smoking|smoking/.test(t)) result.risk_smoking = "Yes";
 
   // Alcohol
-  if (/不喝酒|沒喝酒|無酒|不飲酒/.test(t)) result.risk_alcohol = "No";
-  else if (/喝酒|飲酒|酒/.test(t)) result.risk_alcohol = "Yes";
+  if (/no喝alcohol|no喝alcohol|nonealcohol|no飲alcohol/.test(t)) result.risk_alcohol = "No";
+  else if (/喝alcohol|飲alcohol|alcohol/.test(t)) result.risk_alcohol = "Yes";
 
   // Betel nut
-  if (/不嚼|沒嚼|無嚼|不吃檳榔/.test(t)) result.risk_betel_nut = "No";
-  else if (/檳榔|嚼/.test(t)) result.risk_betel_nut = "Yes";
+  if (/no嚼|no嚼|none嚼|noeatingbetel nut/.test(t)) result.risk_betel_nut = "No";
+  else if (/betel nut|嚼/.test(t)) result.risk_betel_nut = "Yes";
 
   // Drug allergy
-  if (/不過敏|沒有過敏|無過敏|no.?allerg/i.test(t)) result.drug_allergy = "No known drug allergy (NKDA)";
-  else if (/過敏/.test(t)) result.drug_allergy = text;
+  if (/noallergy|noyesallergy|noneallergy|no.?allerg/i.test(t)) result.drug_allergy = "No known drug allergy (NKDA)";
+  else if (/allergy/.test(t)) result.drug_allergy = text;
 
   return Object.keys(result).length > 0 ? result : null;
 }
@@ -3920,7 +3920,7 @@ async function onSend() {
   if (!text) return;
 
   if (!AppState.caseId) {
-    addMessage({ role: "ai", text: "⚠️ 請先按 Create 建立 Case 再開始問診。" });
+    addMessage({ role: "ai", text: "⚠️ 請先按 Create 建立 Case 再started問診。" });
     return;
   }
 
@@ -3983,7 +3983,7 @@ async function onSend() {
     // ✅ SOP check runs AFTER SOAP (non-blocking, updates panel in background)
     runSopCheckLLM(caseId).then(sopResult => {
       if (sopResult && sopResult.next_questions && sopResult.next_questions.length > 0) {
-        addMessage({ role: "ai", text: "📋 SOP 提醒：\n" + sopResult.next_questions.slice(0, 3).map(q => `• ${q}`).join("\n") });
+        addMessage({ role: "ai", text: "📋 SOP reminder：\n" + sopResult.next_questions.slice(0, 3).map(q => `• ${q}`).join("\n") });
       }
     });
 
@@ -4073,7 +4073,7 @@ function startRecording() {
     log("Recording started.");
   }).catch(err => {
     log("Mic permission denied: " + err.message);
-    addMessage({ role: "ai", text: "⚠️ 無法取得麥克風權限。" });
+    addMessage({ role: "ai", text: "⚠️ none法取得麥克風權限。" });
   });
 }
 
@@ -4098,12 +4098,12 @@ async function confirmRecording() {
 
   const caseId = getCaseId();
   if (!caseId) {
-    addMessage({ role: "ai", text: "⚠️ 請先建立 Case。" });
+    addMessage({ role: "ai", text: "⚠️ Please create first Case。" });
     return;
   }
 
   $("pillStatus").classList.remove("hidden");
-  $("pillStatus").textContent = "上傳 & 轉錄中…";
+  $("pillStatus").textContent = "upper傳 & 轉錄中…";
 
   const blob = new Blob(audioChunks, { type: "audio/webm" });
   const formData = new FormData();
@@ -4394,118 +4394,118 @@ function buildRestSoapForm() {
 
 const SOP_ITEMS = {
   level_0: [
-    { id: "age", label: "年齡", keywords: ["歲", "年紀", "幾歲", "年齡"] },
-    { id: "sex", label: "性別", keywords: ["男", "女", "先生", "小姐", "女士", "男性", "女性"] },
-    { id: "visit_type", label: "就診類型", keywords: ["初診", "複診", "回診", "第一次", "follow"] },
-    { id: "chief_complaint", label: "主訴", keywords: ["主訴", "怎麼了", "哪裡不舒服", "什麼問題", "來看什麼"] },
-    { id: "pi_onset", label: "發病時間", keywords: ["開始", "何時", "多久了", "什麼時候", "幾天", "幾週", "昨天", "上週"] },
-    { id: "pi_duration", label: "病程", keywords: ["持續", "一直", "都會", "斷斷續續", "天了", "週了", "月了"] },
-    { id: "pi_progression", label: "進展", keywords: ["越來越", "惡化", "加重", "好轉", "變化", "改善"] },
-    { id: "pi_site", label: "部位", keywords: ["左", "右", "上", "下", "前", "後", "顆", "牙", "臼齒", "犬齒", "門牙", "牙齦", "舌", "頰", "顎"] },
-    { id: "pi_associated_symptoms", label: "伴隨症狀", keywords: ["腫", "出血", "流膿", "麻", "發燒", "頭痛", "淋巴"] },
+    { id: "age", label: "Age", keywords: ["years old", "年紀", "幾years old", "Age"] },
+    { id: "sex", label: "Sex", keywords: ["male", "female", "先生", "small姐", "female", "maletype", "femaletype"] },
+    { id: "visit_type", label: "Visit Type", keywords: ["初診", "複診", "回診", "第一次", "follow"] },
+    { id: "chief_complaint", label: "Chief Complaint", keywords: ["Chief Complaint", "what's wrong", "where hurts", "什麼問題", "來看什麼"] },
+    { id: "pi_onset", label: "Onset", keywords: ["started", "when", "how long了", "什麼時候", "days", "weeks", "昨days", "upper週"] },
+    { id: "pi_duration", label: "Duration", keywords: ["continuous", "一直", "都會", "斷斷續續", "days了", "週了", "月了"] },
+    { id: "pi_progression", label: "Progression", keywords: ["progressively", "worsening", "加重", "好轉", "change", "改善"] },
+    { id: "pi_site", label: "Site", keywords: ["left", "right", "upper", "lower", "anterior", "posterior", "顆", "tooth", "臼齒", "canine", "incisor", "gingiva", "tongue", "buccal", "顎"] },
+    { id: "pi_associated_symptoms", label: "Associated Symptoms", keywords: ["swelling", "bleeding", "流pus", "麻", "fever", "headpain", "lymph"] },
   ],
   level_1_modules: {
     pain: {
-      label: "疼痛",
-      detect_keywords: ["痛", "疼", "酸", "刺", "不舒服", "牙痛", "牙疼", "顏面痛"],
+      label: "Pain",
+      detect_keywords: ["pain", "pain", "sore", "sharp", "discomfort", "toothache", "toothpain", "facialpain"],
       items: [
-        { id: "l1_pain_onset", label: "發病時間", keywords: ["開始", "何時", "多久"] },
-        { id: "l1_pain_duration", label: "持續時間", keywords: ["持續", "一直", "多久"] },
-        { id: "l1_pain_quality", label: "疼痛性質", keywords: ["銳", "鈍", "跳", "刺", "灼", "悶", "抽", "鑽", "脹"] },
-        { id: "l1_pain_severity", label: "嚴重程度", keywords: ["幾分", "嚴重", "影響", "吃不了", "睡不著", "分數"] },
-        { id: "l1_pain_location", label: "疼痛部位", keywords: ["哪裡痛", "哪顆", "左", "右", "上", "下"] },
-        { id: "l1_pain_radiation", label: "放射痛", keywords: ["放射", "傳導", "延伸", "耳朵", "太陽穴", "頭"] },
-        { id: "l1_pain_triggering_factors", label: "誘發因素", keywords: ["冷", "熱", "甜", "咬", "吃東西", "刺激", "觸發"] },
-        { id: "l1_pain_relieving_factors", label: "緩解因素", keywords: ["止痛", "緩解", "吃藥", "好一點", "減輕"] },
-        { id: "l1_pain_spontaneous_or_stimulated", label: "自發/刺激性", keywords: ["自己", "自發", "刺激", "碰到才", "不碰不痛", "隨時"] },
+        { id: "l1_pain_onset", label: "Onset", keywords: ["started", "when", "how long"] },
+        { id: "l1_pain_duration", label: "Duration", keywords: ["continuous", "一直", "how long"] },
+        { id: "l1_pain_quality", label: "Pain Quality", keywords: ["銳", "鈍", "跳", "sharp", "灼", "悶", "抽", "鑽", "脹"] },
+        { id: "l1_pain_severity", label: "Severity", keywords: ["幾分", "severe", "影響", "eatingno了", "睡no著", "分數"] },
+        { id: "l1_pain_location", label: "Pain Site", keywords: ["wherepain", "which tooth", "left", "right", "upper", "lower"] },
+        { id: "l1_pain_radiation", label: "Radiation", keywords: ["放射", "傳導", "延伸", "耳朵", "temple", "head"] },
+        { id: "l1_pain_triggering_factors", label: "Triggering Factors", keywords: ["cold", "hot", "甜", "chewing", "eating東西", "irritation", "觸發"] },
+        { id: "l1_pain_relieving_factors", label: "Relieving Factors", keywords: ["painkiller", "緩解", "eatingmedication", "好一點", "減輕"] },
+        { id: "l1_pain_spontaneous_or_stimulated", label: "spontaneous/stimulated", keywords: ["自己", "spontaneous", "irritation", "碰到才", "no碰nopain", "隨時"] },
       ],
       red_flags: [
-        { id: "night_pain", label: "夜間痛", keywords: ["晚上", "半夜", "睡覺", "夜間", "痛醒"] },
-        { id: "neurological_symptoms", label: "神經症狀", keywords: ["麻", "麻痺", "感覺異常", "嘴歪", "眼歪"] },
-        { id: "rapid_worsening", label: "急速惡化", keywords: ["突然", "急", "很快", "越來越嚴重", "加劇"] },
+        { id: "night_pain", label: "Night Pain", keywords: ["晚upper", "半夜", "睡覺", "夜間", "pain醒"] },
+        { id: "neurological_symptoms", label: "Neurological Symptoms", keywords: ["麻", "麻痺", "感覺abnormal", "嘴歪", "眼歪"] },
+        { id: "rapid_worsening", label: "Rapid Worsening", keywords: ["sudden", "急", "很快", "progressivelysevere", "加劇"] },
       ]
     },
     oral_mucosal_lesion: {
       label: "口腔黏膜",
-      detect_keywords: ["潰瘍", "破", "嘴破", "口瘡", "水泡", "白斑", "紅斑", "黏膜"],
+      detect_keywords: ["ulcer", "broken", "嘴broken", "canker sore", "vesicle", "leukoplakia", "erythroplakia", "黏膜"],
       items: [
-        { id: "l1_oral_mucosal_lesion_duration", label: "持續時間", keywords: ["多久", "幾天", "幾週"] },
-        { id: "l1_oral_mucosal_lesion_recurrence", label: "復發情形", keywords: ["反覆", "復發", "常常", "之前也有"] },
-        { id: "l1_oral_mucosal_lesion_number_of_lesions", label: "病灶數量", keywords: ["幾個", "一個", "多個", "很多"] },
-        { id: "l1_oral_mucosal_lesion_site", label: "病灶位置", keywords: ["哪裡", "舌", "頰", "唇", "牙齦", "口底", "上顎"] },
-        { id: "l1_oral_mucosal_lesion_pain", label: "疼痛程度", keywords: ["痛", "不痛", "會痛", "刺激"] },
-        { id: "l1_oral_mucosal_lesion_healing_pattern", label: "癒合模式", keywords: ["好過", "自己好", "不會好", "越大"] },
-        { id: "l1_oral_mucosal_lesion_systemic_symptoms", label: "全身症狀", keywords: ["發燒", "倦怠", "體重", "關節"] },
-        { id: "l1_oral_mucosal_lesion_drug_history", label: "用藥史", keywords: ["吃藥", "用藥", "藥物", "服用"] },
-        { id: "l1_oral_mucosal_lesion_immunocompromised_status", label: "免疫功能", keywords: ["免疫", "HIV", "化療", "器官移植", "類固醇"] },
+        { id: "l1_oral_mucosal_lesion_duration", label: "Duration", keywords: ["how long", "days", "weeks"] },
+        { id: "l1_oral_mucosal_lesion_recurrence", label: "Recurrence", keywords: ["recurrent", "復發", "常常", "ofanterior也yes"] },
+        { id: "l1_oral_mucosal_lesion_number_of_lesions", label: "Number of Lesions", keywords: ["幾個", "一個", "multiple個", "很multiple"] },
+        { id: "l1_oral_mucosal_lesion_site", label: "Lesion Site", keywords: ["where", "tongue", "buccal", "lip", "gingiva", "口底", "maxillary"] },
+        { id: "l1_oral_mucosal_lesion_pain", label: "Pain Level", keywords: ["pain", "nopain", "會pain", "irritation"] },
+        { id: "l1_oral_mucosal_lesion_healing_pattern", label: "Healing Pattern", keywords: ["好過", "自己好", "not healing", "越large"] },
+        { id: "l1_oral_mucosal_lesion_systemic_symptoms", label: "Systemic Symptoms", keywords: ["fever", "倦怠", "體重", "joint"] },
+        { id: "l1_oral_mucosal_lesion_drug_history", label: "Drug History", keywords: ["eatingmedication", "usemedication", "medicationmaterial", "服use"] },
+        { id: "l1_oral_mucosal_lesion_immunocompromised_status", label: "Immune Status", keywords: ["immune", "HIV", "change療", "器官移植", "類固醇"] },
       ],
       red_flags: [
-        { id: "non_healing_over_2_weeks", label: "超過兩週未癒", keywords: ["兩週", "2週", "不會好", "一個月", "很久沒好"] },
-        { id: "induration", label: "硬結", keywords: ["硬", "硬塊", "結節"] },
-        { id: "unexplained_bleeding", label: "不明出血", keywords: ["流血", "出血", "血"] },
+        { id: "non_healing_over_2_weeks", label: "超過兩週未癒", keywords: ["兩週", "2週", "not healing", "一個月", "很久no好"] },
+        { id: "induration", label: "Induration", keywords: ["hard", "hard mass", "nodule"] },
+        { id: "unexplained_bleeding", label: "no明bleeding", keywords: ["bleeding", "bleeding", "血"] },
       ]
     },
     swelling: {
-      label: "腫脹",
-      detect_keywords: ["腫", "腫脹", "腫塊", "包", "鼓起", "膨"],
+      label: "Swelling",
+      detect_keywords: ["swelling", "Swelling", "Mass", "swelling", "鼓起", "膨"],
       items: [
-        { id: "l1_swelling_onset", label: "發病時間", keywords: ["開始", "何時", "多久"] },
-        { id: "l1_swelling_growth_rate", label: "生長速度", keywords: ["變大", "長大", "越來越", "快速", "慢慢"] },
-        { id: "l1_swelling_pain", label: "疼痛程度", keywords: ["痛", "壓痛", "不痛"] },
-        { id: "l1_swelling_consistency", label: "質地", keywords: ["硬", "軟", "彈性", "實心"] },
-        { id: "l1_swelling_fluctuation", label: "波動感", keywords: ["波動", "軟軟", "膿", "液體"] },
-        { id: "l1_swelling_infection_signs", label: "感染徵兆", keywords: ["紅", "熱", "膿", "發燒", "化膿"] },
-        { id: "l1_swelling_trauma_history", label: "外傷史", keywords: ["撞", "摔", "外傷", "受傷", "車禍"] },
+        { id: "l1_swelling_onset", label: "Onset", keywords: ["started", "when", "how long"] },
+        { id: "l1_swelling_growth_rate", label: "Growth Rate", keywords: ["enlarging", "長large", "progressively", "快速", "慢慢"] },
+        { id: "l1_swelling_pain", label: "Pain Level", keywords: ["pain", "tenderness", "nopain"] },
+        { id: "l1_swelling_consistency", label: "Consistency", keywords: ["hard", "soft", "clicktype", "實心"] },
+        { id: "l1_swelling_fluctuation", label: "Fluctuation", keywords: ["波動", "softsoft", "pus", "液體"] },
+        { id: "l1_swelling_infection_signs", label: "Signs of Infection", keywords: ["red", "hot", "pus", "fever", "changepus"] },
+        { id: "l1_swelling_trauma_history", label: "Trauma History", keywords: ["撞", "摔", "trauma", "受傷", "車禍"] },
       ],
       red_flags: [
-        { id: "rapid_progression", label: "快速進展", keywords: ["很快", "急速", "幾小時", "一天內"] },
-        { id: "airway_symptoms", label: "呼吸道症狀", keywords: ["呼吸", "吞嚥", "喘", "窒息"] },
-        { id: "systemic_fever", label: "全身發燒", keywords: ["發燒", "燒", "體溫"] },
+        { id: "rapid_progression", label: "Rapid Progression", keywords: ["很快", "急速", "幾small時", "一days內"] },
+        { id: "airway_symptoms", label: "Airway Symptoms", keywords: ["呼吸", "吞嚥", "喘", "suffocation"] },
+        { id: "systemic_fever", label: "Systemic Fever", keywords: ["fever", "燒", "體溫"] },
       ]
     },
     xerostomia: {
-      label: "口乾",
-      detect_keywords: ["口乾", "乾", "唾液", "口渴", "沒有口水"],
+      label: "dry mouth",
+      detect_keywords: ["dry mouth", "乾", "唾液", "口渴", "noyes口水"],
       items: [
-        { id: "l1_xerostomia_onset", label: "發病時間", keywords: ["開始", "何時", "多久"] },
-        { id: "l1_xerostomia_severity", label: "嚴重程度", keywords: ["嚴重", "影響", "吃東西", "說話"] },
-        { id: "l1_xerostomia_day_night_variation", label: "日夜差異", keywords: ["白天", "晚上", "睡覺", "早上"] },
-        { id: "l1_xerostomia_medication_history", label: "用藥史", keywords: ["吃藥", "藥物", "抗憂鬱", "降血壓"] },
-        { id: "l1_xerostomia_autoimmune_disease_history", label: "自體免疫病史", keywords: ["自體免疫", "乾燥症", "SLE", "類風濕"] },
-        { id: "l1_xerostomia_dry_eyes", label: "乾眼症", keywords: ["眼睛乾", "乾眼", "淚液"] },
-        { id: "l1_xerostomia_salivary_gland_swelling", label: "唾液腺腫脹", keywords: ["腮腺", "唾液腺", "腫脹", "腫"] },
+        { id: "l1_xerostomia_onset", label: "Onset", keywords: ["started", "when", "how long"] },
+        { id: "l1_xerostomia_severity", label: "Severity", keywords: ["severe", "影響", "eating東西", "說話"] },
+        { id: "l1_xerostomia_day_night_variation", label: "Day/Night Variation", keywords: ["whitedays", "晚upper", "睡覺", "早upper"] },
+        { id: "l1_xerostomia_medication_history", label: "Drug History", keywords: ["eatingmedication", "medicationmaterial", "抗憂鬱", "降血壓"] },
+        { id: "l1_xerostomia_autoimmune_disease_history", label: "Autoimmune Hx", keywords: ["autoimmune", "乾燥症", "SLE", "rheumatoid"] },
+        { id: "l1_xerostomia_dry_eyes", label: "Dry Eyes", keywords: ["眼睛乾", "乾眼", "淚液"] },
+        { id: "l1_xerostomia_salivary_gland_swelling", label: "Salivary Gland Swelling", keywords: ["腮腺", "唾液腺", "Swelling", "swelling"] },
       ],
       red_flags: [
-        { id: "bilateral_gland_enlargement", label: "雙側腺體腫大", keywords: ["兩邊", "雙側", "both side"] },
-        { id: "systemic_autoimmune_features", label: "自體免疫特徵", keywords: ["關節", "皮疹", "乾燥", "全身"] },
+        { id: "bilateral_gland_enlargement", label: "Bilateral Gland Enlargement", keywords: ["兩邊", "雙側", "both side"] },
+        { id: "systemic_autoimmune_features", label: "autoimmune特徵", keywords: ["joint", "皮疹", "乾燥", "全身"] },
       ]
     },
     potentially_malignant_disorder: {
-      label: "癌前病灶",
-      detect_keywords: ["白斑", "紅斑", "白色", "紅色", "斑", "懷疑", "癌", "pre-cancer"],
+      label: "癌anterior病灶",
+      detect_keywords: ["leukoplakia", "erythroplakia", "white色", "red色", "plaque", "懷疑", "癌", "pre-cancer"],
       items: [
-        { id: "l1_potentially_malignant_disorder_duration", label: "持續時間", keywords: ["多久", "幾天", "幾週", "幾個月"] },
-        { id: "l1_potentially_malignant_disorder_change_over_time", label: "變化趨勢", keywords: ["變大", "變色", "變化", "越來越"] },
-        { id: "l1_potentially_malignant_disorder_pain", label: "疼痛程度", keywords: ["痛", "不痛", "會痛"] },
-        { id: "l1_potentially_malignant_disorder_smoking_history", label: "抽菸史", keywords: ["菸", "抽菸", "吸菸", "戒菸"] },
-        { id: "l1_potentially_malignant_disorder_alcohol_use", label: "飲酒史", keywords: ["酒", "喝酒", "飲酒"] },
-        { id: "l1_potentially_malignant_disorder_local_irritation", label: "局部刺激", keywords: ["假牙", "銳邊", "磨", "刺激"] },
-        { id: "l1_potentially_malignant_disorder_previous_biopsy", label: "先前切片", keywords: ["切片", "biopsy", "病理"] },
+        { id: "l1_potentially_malignant_disorder_duration", label: "Duration", keywords: ["how long", "days", "weeks", "幾個月"] },
+        { id: "l1_potentially_malignant_disorder_change_over_time", label: "Change Over Time", keywords: ["enlarging", "discoloration", "change", "progressively"] },
+        { id: "l1_potentially_malignant_disorder_pain", label: "Pain Level", keywords: ["pain", "nopain", "會pain"] },
+        { id: "l1_potentially_malignant_disorder_smoking_history", label: "Smoking Hx", keywords: ["smoking", "smoking", "吸smoking", "戒smoking"] },
+        { id: "l1_potentially_malignant_disorder_alcohol_use", label: "Alcohol Hx", keywords: ["alcohol", "喝alcohol", "飲alcohol"] },
+        { id: "l1_potentially_malignant_disorder_local_irritation", label: "Local Irritation", keywords: ["denture", "銳邊", "磨", "irritation"] },
+        { id: "l1_potentially_malignant_disorder_previous_biopsy", label: "Previous Biopsy", keywords: ["biopsy", "biopsy", "pathology"] },
       ],
       red_flags: [
-        { id: "induration", label: "硬結", keywords: ["硬", "結節", "硬塊"] },
-        { id: "ulceration", label: "潰瘍化", keywords: ["潰瘍", "破", "爛"] },
-        { id: "rapid_change", label: "快速變化", keywords: ["突然", "快速", "急"] },
+        { id: "induration", label: "Induration", keywords: ["hard", "nodule", "hard mass"] },
+        { id: "ulceration", label: "Ulceration", keywords: ["ulcer", "broken", "爛"] },
+        { id: "rapid_change", label: "Rapid Change", keywords: ["sudden", "快速", "急"] },
       ]
     },
   },
   level_2: [
-    { id: "l2_cardiovascular_disease", label: "心血管疾病", keywords: ["心臟", "高血壓", "中風", "心血管", "血壓"] },
-    { id: "l2_diabetes", label: "糖尿病", keywords: ["糖尿", "血糖", "DM", "胰島素"] },
-    { id: "l2_immunological_disease", label: "免疫疾病", keywords: ["免疫", "自體免疫", "過敏", "紅斑性狼瘡", "類風濕"] },
-    { id: "l2_anticoagulant_use", label: "抗凝血劑", keywords: ["抗凝", "warfarin", "阿斯匹靈", "aspirin", "血液", "凝血", "薄血"] },
-    { id: "l2_bisphosphonate_use", label: "雙磷酸鹽類", keywords: ["雙磷酸", "bisphosphonate", "骨鬆", "骨質疏鬆", "fosamax"] },
-    { id: "l2_drug_allergy", label: "藥物過敏", keywords: ["過敏", "藥物過敏", "allergy", "青黴素", "盤尼西林"] },
+    { id: "l2_cardiovascular_disease", label: "CVD", keywords: ["心臟", "hypertension", "中風", "心血管", "血壓"] },
+    { id: "l2_diabetes", label: "Diabetes", keywords: ["diabetes", "血糖", "DM", "胰島素"] },
+    { id: "l2_immunological_disease", label: "Immunological Disease", keywords: ["immune", "autoimmune", "allergy", "erythroplakiatype狼瘡", "rheumatoid"] },
+    { id: "l2_anticoagulant_use", label: "Anticoagulant", keywords: ["抗凝", "warfarin", "阿斯匹靈", "aspirin", "blood", "coagulation", "薄血"] },
+    { id: "l2_bisphosphonate_use", label: "bisphosphonatesore鹽類", keywords: ["bisphosphonatesore", "bisphosphonate", "骨loose", "bone quality疏loose", "fosamax"] },
+    { id: "l2_drug_allergy", label: "Drug Allergy", keywords: ["allergy", "Drug Allergy", "allergy", "青黴素", "盤尼西林"] },
   ]
 };
 
@@ -4588,7 +4588,7 @@ function renderSopPanel() {
     }
   } else {
     l1s.style.display = "";
-    l1l.textContent = "等待主訴…";
+    l1l.textContent = "等待Chief Complaint…";
   }
 
   const l2c = $("sopL2Items"); l2c.innerHTML = "";
@@ -4642,10 +4642,10 @@ $("sopPanelToggle").onclick = () => {
 };
 
 function buildSopAwareReminder(sopResult) {
-  const lines = ["我已更新 SOAP ✅"];
+  const lines = ["Updated SOAP ✅"];
   if (sopResult && sopResult.next_questions && sopResult.next_questions.length > 0) {
     lines.push("");
-    lines.push("📋 SOP 提醒 — 建議接下來確認：");
+    lines.push("📋 SOP reminder — 建議接lower來確認：");
     for (const q of sopResult.next_questions.slice(0, 5)) lines.push(`• ${q}`);
   }
   const missing = getMissingFields(4);
@@ -4655,7 +4655,7 @@ function buildSopAwareReminder(sopResult) {
     for (const key of missing) lines.push(`- ${(ACTIVE_FIELD_LABELS || FIELD_LABELS)[key] || key}`);
   }
   if (!sopResult?.next_questions?.length && !missing.length) {
-    lines.push("目前欄位看起來都已經填齊了 ✅");
+    lines.push("itemanterior欄位看起來都done經填齊了 ✅");
   }
   return lines.join("\n");
 }
@@ -4720,7 +4720,7 @@ $("btnCreateCase").onclick = async () => {
     const data = await res.json();
     setCaseId(data.id);
     log(`Case created: ${data.id}`);
-    addMessage({ role: "ai", text: `Case #${data.id} 已建立 ✅\n可以開始問診了。` });
+    addMessage({ role: "ai", text: `Case #${data.id} done建立 ✅\n可以started問診了。` });
     UI.setState("idle");
     $("caseIdInput").disabled = false;
   } catch (e) {
@@ -4782,14 +4782,14 @@ $("btnRefreshVersions").onclick = () => refreshVersionsSafe();
 $("btnOpenCleanUI").onclick = () => {
   const caseId = getCaseId();
   if (caseId) window.open(`/cases/${caseId}/ui`, "_blank");
-  else addMessage({ role: "ai", text: "⚠️ 請先建立 Case。" });
+  else addMessage({ role: "ai", text: "⚠️ Please create first Case。" });
 };
 
 // Open latest audio
 $("btnOpenLatestAudio").onclick = () => {
   const caseId = getCaseId();
   if (caseId) window.open(`/cases/${caseId}/audio/latest`, "_blank");
-  else addMessage({ role: "ai", text: "⚠️ 請先建立 Case。" });
+  else addMessage({ role: "ai", text: "⚠️ Please create first Case。" });
 };
 
 // Demo reset — two-click safety (no confirm dialog)
@@ -4871,7 +4871,7 @@ const LiveState = {
 function startLiveStream() {
   const caseId = getCaseId();
   if (!caseId) {
-    addMessage({ role: "ai", text: "⚠️ 請先建立 Case 再開始 Live。" });
+    addMessage({ role: "ai", text: "⚠️ Please create first Case 再started Live。" });
     return;
   }
 
@@ -4993,7 +4993,7 @@ async function startMicCapture() {
     log("Live: mic capturing PCM16 @ 16kHz");
   } catch (err) {
     log("Live: mic error: " + err.message);
-    addMessage({ role: "ai", text: "⚠️ 無法取得麥克風: " + err.message });
+    addMessage({ role: "ai", text: "⚠️ none法取得麥克風: " + err.message });
     stopLiveStream(false);
   }
 }
