@@ -1,0 +1,52 @@
+# app/services/soap_renderer.py
+from app.domain.soap_schema import SoapSchema
+
+
+def render_soap(s: SoapSchema) -> str:
+    lines = []
+
+    lines.append("S (Subjective)")
+    lines.append("")
+    lines.append(f"Chief Complaint (CC): {s.subjective.cc}")
+    lines.append(f"Present Illness (PI): {s.subjective.pi}")
+    lines.append(f"Past Medical History (PMH): {s.subjective.pmh}")
+    lines.append(f"Past Dental History (PDH): {s.subjective.pdh}")
+    lines.append(f"Current Medication: {s.subjective.current_medication}")
+    lines.append(f"Drug Allergy History: {s.subjective.drug_allergy_history}")
+    lines.append(f"Birth History: {s.subjective.birth_history}")
+    lines.append(f"Vaccination History: {s.subjective.vaccination_history}")
+    lines.append("")
+    lines.append("TOCC:")
+    lines.append(f"Travel History: {s.subjective.tocc.travel_history}")
+    lines.append(f"Occupation: {s.subjective.tocc.occupation}")
+    lines.append(f"Contact History: {s.subjective.tocc.contact_history}")
+    lines.append(f"Cluster: {s.subjective.tocc.cluster}")
+    lines.append("")
+    lines.append("Risk Factors:")
+    lines.append(f"Alcohol: {s.subjective.risk_factors.alcohol.status} {s.subjective.risk_factors.alcohol.details}")
+    lines.append(f"Betel Nut: {s.subjective.risk_factors.betel_nut.status} {s.subjective.risk_factors.betel_nut.details}")
+    lines.append(f"Cigarettes: {s.subjective.risk_factors.cigarettes.status} {s.subjective.risk_factors.cigarettes.details}")
+    lines.append("")
+    lines.append(f"Family History: {s.subjective.family_history}")
+    lines.append("")
+    lines.append("O (Objective)")
+    lines.append("")
+    lines.append(f"Pain Score: {s.objective.pain_score}")
+    lines.append(f"Pain Pattern: {s.objective.pain_pattern}")
+    lines.append(f"Pain Location: {s.objective.pain_location}")
+    lines.append(f"Extraoral Findings: {s.objective.extraoral_findings}")
+    lines.append(f"Intraoral Findings: {s.objective.intraoral_findings}")
+    lines.append(f"Present Dentition: {s.objective.present_dentition}")
+    lines.append("")
+    lines.append("A (Assessment)")
+    lines.append("")
+    lines.append(f"Location: {s.assessment.location}")
+    lines.append(f"Diagnosis: {s.assessment.diagnosis}")
+    lines.append("")
+    lines.append("P (Plan)")
+    lines.append("")
+    lines.append("Treatment Plan:")
+    for item in s.plan.treatment_plan:
+        lines.append(item)
+
+    return "\n".join(lines)

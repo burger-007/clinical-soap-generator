@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gamma – AI Clinical Assistant</title>
+  <meta name="description" content="Gamma AI Clinical Assistant System — NTU Hospital, Department of Dentistry" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- =========================================
+       HOME VIEW — Landing Page
+       ========================================= -->
+    <div id="homeView">
+      <div class="landing-container">
+        <header class="landing-header">
+          <div class="landing-logo">
+            <div class="landing-dot"></div>
+          </div>
+          <h1 class="landing-title">NTU Hospital · Department of Dentistry</h1>
+          <h2 class="landing-subtitle">Gamma AI Clinical Assistant</h2>
+          <p class="landing-tagline">AI-powered Dental Clinical Assistant</p>
+        </header>
+
+        <section class="dept-section">
+          <h3 class="dept-section-title">Select Department</h3>
+          <div class="dept-grid" id="deptGrid">
+            <!-- rendered by JS -->
+          </div>
+        </section>
+
+        <footer class="landing-footer">
+          <span>© 2026 NTU Hospital · Gamma v2</span>
+        </footer>
+      </div>
+    </div>
+
+    <!-- =========================================
+       CLINIC VIEW — Main AI Assistant
+       ========================================= -->
+    <div id="clinicView" class="hidden">
+
+      <!-- Topbar -->
+      <header id="topbar" role="banner">
+        <div class="brand">
+          <div class="brand-row">
+            <button id="btnBackHome" class="back-btn" title="Back to Department Selection">←</button>
+            <div class="logo-dot" aria-hidden="true"></div>
+            <b id="clinicTitle">Gamma</b>
+            <span class="chip">v2</span>
+          </div>
+          <span class="muted" id="clinicSubtitle">Dental SOAP Assistant</span>
+        </div>
+
+        <div class="top-right">
+          <div class="case-control">
+            <span class="muted tiny">Case ID</span>
+            <input id="caseIdInput" type="number" value="" min="1" placeholder="—" disabled />
+            <button id="btnCreateCase" class="btn">Create</button>
+          </div>
+
+          <div id="globalStatus" class="status-pill" title="Global status">idle</div>
+          <button id="btnToggleDebug" class="btn">Debug</button>
+        </div>
+      </header>
+
+      <!-- Main -->
+      <main id="main" role="main">
+        <!-- SOAP (left) -->
+        <section id="soapPane" class="pane" aria-label="SOAP pane">
+          <div class="pane-header">
+            <div class="left">
+              <div class="title">SOAP</div>
+              <div id="soapStatus" class="substatus"></div>
+            </div>
+
+            <div class="pane-actions">
+              <select id="versionSelect" class="btn select" style="min-width: 280px;"></select>
+              <button id="btnLoadVersion" class="btn">Load</button>
+              <button id="btnRefreshVersions" class="btn">Refresh</button>
+              <button id="btnDemoReset" class="btn danger">Demo Reset</button>
+            </div>
+          </div>
+
+          <form id="soapForm" class="soap-form" autocomplete="off">
+            <!-- S -->
+            <div class="soap-card">
+              <div class="card-head">
+                <div class="badge">S</div>
+                <div class="card-head-text">
+                  <b>Subjective</b>
+                  <span>Subjective Data</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="field">
+                  <label>Chief Complaint (CC)</label>
+                  <textarea name="cc" rows="2" placeholder="Needs review"></textarea>
+                </div>
+                <div class="field">
+                  <label>Present Illness (PI)</label>
+                  <textarea name="pi" rows="3" placeholder="Needs review"></textarea>
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label>Past Medical History (PMH)</label>
+                    <textarea name="pmh" rows="2" placeholder="Needs review"></textarea>
+                  </div>
+                  <div class="field">
+                    <label>Past Dental History (PDH)</label>
+                    <textarea name="pdh" rows="2" placeholder="Needs review"></textarea>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label>Current Medication</label>
+                    <textarea name="current_medication" rows="2" placeholder="Needs review"></textarea>
+                  </div>
+                  <div class="field">
+                    <label>Drug Allergy History</label>
+                    <textarea name="drug_allergy" rows="2" placeholder="Needs review"></textarea>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label>Birth History</label>
+                    <textarea name="birth_history" rows="2" placeholder="Needs review"></textarea>
+                  </div>
+                  <div class="field">
+                    <label>Vaccination History</label>
+                    <textarea name="vaccination_history" rows="2" placeholder="Needs review"></textarea>
+                  </div>
+                </div>
+                <!-- TOCC -->
+                <div class="soap-card inner">
+                  <div class="card-head inner-head">
+                    <div class="badge t">T</div>
+                    <div class="card-head-text"><b>TOCC</b><span>Travel / Occupation / Contact / Cluster</span></div>
+                  </div>
+                  <div class="card-body">
+                    <div class="field">
+                      <label>Travel History</label>
+                      <textarea name="tocc_travel" rows="2" placeholder="Needs review"></textarea>
+                    </div>
+                    <div class="grid-2">
+                      <div class="field"><label>Occupation</label><textarea name="tocc_occupation" rows="2"
+                          placeholder="Needs review"></textarea></div>
+                      <div class="field"><label>Contact History</label><textarea name="tocc_contact" rows="2"
+                          placeholder="Needs review"></textarea></div>
+                    </div>
+                    <div class="field"><label>Cluster</label><input type="text" name="tocc_cluster"
+                        placeholder="Needs review" /></div>
+                  </div>
+                </div>
+                <!-- Risk -->
+                <div class="soap-card inner">
+                  <div class="card-head inner-head">
+                    <div class="badge r">R</div>
+                    <div class="card-head-text"><b>Risk Factors</b><span>Smoking / Alcohol / Betel Nut</span></div>
+                  </div>
+                  <div class="card-body">
+                    <div class="grid-2">
+                      <div class="field"><label>Smoking</label><input type="text" name="risk_smoking"
+                          placeholder="Needs review" /></div>
+                      <div class="field"><label>Alcohol</label><input type="text" name="risk_alcohol"
+                          placeholder="Needs review" /></div>
+                    </div>
+                    <div class="grid-2">
+                      <div class="field"><label>Betel Nut</label><input type="text" name="risk_betel_nut"
+                          placeholder="Needs review" /></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Family History -->
+                <div class="field">
+                  <label>Family History</label>
+                  <textarea name="family_history" rows="2" placeholder="Needs review"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- O -->
+            <div class="soap-card">
+              <div class="card-head">
+                <div class="badge o">O</div>
+                <div class="card-head-text"><b>Objective</b><span>Exam Findings</span></div>
+              </div>
+              <div class="card-body">
+                <div class="grid-2">
+                  <div class="field"><label>Pain Score</label><input type="text" name="pain_score"
+                      placeholder="Needs review" /></div>
+                  <div class="field"><label>Pain Pattern</label><input type="text" name="pain_pattern"
+                      placeholder="Needs review" /></div>
+                </div>
+                <div class="field"><label>Pain Location</label><textarea name="pain_location" rows="2"
+                    placeholder="Needs review"></textarea></div>
+                <div class="grid-2">
+                  <div class="field"><label>Extraoral Findings</label><textarea name="o_extraoral" rows="2"
+                      placeholder="Needs review"></textarea></div>
+                  <div class="field"><label>Intraoral Findings</label><textarea name="o_intraoral_soft_tissue" rows="2"
+                      placeholder="Needs review"></textarea></div>
+                </div>
+                <div class="field"><label>Present Dentition</label><textarea name="o_teeth_findings" rows="2"
+                    placeholder="Needs review"></textarea></div>
+              </div>
+            </div>
+
+            <!-- A -->
+            <div class="soap-card">
+              <div class="card-head">
+                <div class="badge a">A</div>
+                <div class="card-head-text"><b>Assessment</b><span>Diagnosis</span></div>
+              </div>
+              <div class="card-body">
+                <div class="field"><label>Location</label><input type="text" name="a_location"
+                    placeholder="Needs review" /></div>
+                <div class="field"><label>Diagnosis</label><textarea name="a_diagnosis" rows="2"
+                    placeholder="Needs review"></textarea></div>
+              </div>
+            </div>
+
+            <!-- P -->
+            <div class="soap-card">
+              <div class="card-head">
+                <div class="badge p">P</div>
+                <div class="card-head-text"><b>Plan</b><span>Treatment</span></div>
+              </div>
+              <div class="card-body">
+                <div class="field"><label>Treatment Plan</label><textarea name="p_treatment_plan" rows="3"
+                    placeholder="Needs review"></textarea></div>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <!-- Conversation (right) -->
+        <section id="chatPane" class="pane" aria-label="Conversation pane">
+          <div class="pane-header">
+            <div class="left">
+              <div class="title">Conversation</div>
+              <div id="chatStatus" class="substatus"></div>
+            </div>
+            <div class="pane-actions">
+              <button id="btnOpenCleanUI" class="btn">Open Clean Editor</button>
+              <button id="btnOpenLatestAudio" class="btn">Open Latest Audio</button>
+              <button id="btnLiveStream" class="btn"
+                style="background:rgba(176,0,32,0.08);border-color:rgba(176,0,32,0.22);color:rgba(176,0,32,0.9);font-weight:700">🎙️
+                Live</button>
+            </div>
+          </div>
+
+          <!-- Live Transcript Panel -->
+          <div id="livePanel" class="live-panel hidden">
+            <div class="live-header">
+              <div class="live-header-left">
+                <span class="live-dot"></span>
+                <span class="live-title">Live Transcription</span>
+                <span id="liveTimer" class="live-timer">00:00</span>
+              </div>
+              <div class="live-header-right">
+                <button id="btnStopLive" class="btn danger">⏹ Stop</button>
+              </div>
+            </div>
+            <div id="liveTranscript" class="live-transcript"></div>
+            <div class="live-speakers">
+              <span class="live-speaker-label">Speakers:</span>
+              <span id="liveSpeakers" class="live-speaker-chips"></span>
+            </div>
+          </div>
+
+          <!-- SOP Checklist Panel -->
+          <div id="sopPanel" class="sop-panel">
+            <div class="sop-header" id="sopPanelToggle">
+              <div class="sop-header-left">
+                <span class="sop-icon">📋</span>
+                <span class="sop-title">SOP Checklist</span>
+                <span id="sopProgress" class="sop-progress-chip">0 / 0</span>
+              </div>
+              <button class="btn sop-toggle-btn" id="sopCollapseBtn">▼</button>
+            </div>
+            <div id="sopBody" class="sop-body">
+              <div class="sop-level" data-level="0">
+                <div class="sop-level-head"><span class="sop-level-badge l0">L0</span> General First Visit</div>
+                <div class="sop-items" id="sopL0Items"></div>
+              </div>
+              <div class="sop-level" data-level="1" id="sopL1Section">
+                <div class="sop-level-head"><span class="sop-level-badge l1">L1</span> Chief Complaint Oriented <span id="sopDetectedCC"
+                    class="chip" style="margin-left:6px;"></span></div>
+                <div class="sop-items" id="sopL1Items"></div>
+              </div>
+              <div class="sop-level" data-level="2">
+                <div class="sop-level-head"><span class="sop-level-badge l2">L2</span> Common Required Questions</div>
+                <div class="sop-items" id="sopL2Items"></div>
+              </div>
+              <div class="sop-level sop-rf-section" data-level="rf" id="sopRFSection" style="display:none;">
+                <div class="sop-level-head"><span class="sop-level-badge rf">🚨</span> Red Flags</div>
+                <div class="sop-items" id="sopRedFlags"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="chatThread" class="thread" aria-live="polite"></div>
+        </section>
+      </main>
+
+      <!-- Composer -->
+      <footer id="composer" role="contentinfo">
+        <div id="composerWrap">
+          <div id="composerPill" class="cg-pill" data-mode="text">
+            <button id="plusBtn" class="cg-plus" type="button" aria-label="Plus" disabled aria-hidden="true">+</button>
+            <div class="cg-mid">
+              <textarea id="messageInput" class="cg-input" rows="1" placeholder="Start editing"></textarea>
+              <div id="recHud" class="cg-hud hidden" aria-live="polite">
+                <canvas id="liveWave" class="cg-livewave" width="720" height="40"></canvas>
+                <span class="cg-dot" aria-hidden="true"></span>
+                <span id="recTimer">00:00</span>
+              </div>
+              <div id="recReview" class="cg-review hidden" aria-live="polite">
+                <div class="cg-wave-row"><span class="cg-dots"></span><span class="cg-wave"
+                    aria-hidden="true"></span><span class="cg-dots"></span></div>
+                <div class="cg-review-actions">
+                  <button id="recCancelBtn" type="button" class="cg-chip" aria-label="Cancel">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                      <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" />
+                    </svg>
+                  </button>
+                  <button id="recOkBtn" type="button" class="cg-chip" aria-label="Confirm">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                      <path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div id="pillStatus" class="cg-status hidden" aria-live="polite">Transcribing…</div>
+            </div>
+            <div class="cg-right">
+              <button id="micBtn" class="cg-mic" type="button" aria-label="Mic">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                  <path d="M12 14a3 3 0 0 0 3-3V7a3 3 0 0 0-6 0v4a3 3 0 0 0 3 3Z" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linejoin="round" />
+                  <path d="M19 11a7 7 0 0 1-14 0" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" />
+                  <path d="M12 18v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </button>
+              <button id="mainBtn" class="cg-main" type="button" aria-label="Main">
+                <span id="mainIconWave" class="cg-main-icon"><svg viewBox="0 0 24 24" width="18" height="18">
+                    <path d="M3 12c3 0 3-6 6-6s3 12 6 12 3-6 6-6" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" />
+                  </svg></span>
+                <span id="mainIconStop" class="cg-main-icon hidden"><svg viewBox="0 0 24 24" width="18" height="18">
+                    <rect x="7" y="7" width="10" height="10" rx="2" fill="currentColor" />
+                  </svg></span>
+                <span id="mainIconSend" class="cg-main-icon hidden"><svg viewBox="0 0 24 24" width="18" height="18">
+                    <path d="M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M19 12H5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                  </svg></span>
+              </button>
+            </div>
+          </div>
+          <div id="composerStatus" class="composer-status"></div>
+        </div>
+      </footer>
+
+    </div><!-- /clinicView -->
+
+  </div><!-- /app -->
+
+  <!-- Debug drawer -->
+  <div id="debugDrawer" class="hidden">
+    <div id="debugHeader"><b>Debug</b>
+      <div class="debug-actions"><button id="btnClearDebug" class="btn">Clear</button><button id="btnCloseDebug"
+          class="btn">Close</button></div>
+    </div>
+    <pre id="debug"></pre>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+
+</html>
